@@ -3,14 +3,17 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import HomeBanner from "../assets/images/home-banner.jpg";
 import RegisterCta from "../components/RegisterCta.astro";
+import CoolTitle from "../components/CoolTitle.astro";
 ---
 
 <Layout>
 	<!-- Absolutely and Dynamically placed elements -->
 	<RegisterCta />
 
-	<div class="-mt-36 -mx-6 -z-10
-		rounded-b-[45%] overflow-hidden">
+	<div
+		class="-mt-36 -mx-6 -z-10
+		rounded-b-[15%] md:rounded-b-[45%] overflow-hidden"
+	>
 		<Image
 			src={HomeBanner}
 			class="h-screen min-w-screen object-cover"
@@ -20,7 +23,7 @@ import RegisterCta from "../components/RegisterCta.astro";
 		<div
 			class="absolute inset-0 flex flex-col gap-6 items-center justify-center bg-black/20"
 		>
-			<h1 class="uppercase text-center lg:text-[10rem]">Ven y Sígueme</h1>
+			<h1 class="uppercase text-center md:text-[10rem]">Ven y Sígueme</h1>
 
 			<div class="flex flex-col gap-2">
 				<h2>Monterrey, NL</h2>
@@ -29,11 +32,11 @@ import RegisterCta from "../components/RegisterCta.astro";
 		</div>
 	</div>
 
-	<div class="flex flex-col gap-6 max-w-3xl self-center">
-		<h1 class="text-center">¿Por qué vivir SEEK?</h1>
+	<CoolTitle text="¿Por qué deberías vivir SEEK?" />
 
+	<div class="flex flex-col gap-6 max-w-3xl self-center">
 		<div class="flex flex-col gap-2">
-			<h3>Encuentro</h3>
+			<h2>Encuentro</h2>
 			<p>
 				Siempre estás llamado a profundizar en tu relación con Jesucristo y con
 				su Iglesia: ¡ven y descubre qué te espera!
@@ -41,10 +44,18 @@ import RegisterCta from "../components/RegisterCta.astro";
 		</div>
 
 		<div class="flex flex-col gap-2">
-			<h3>Comunidad</h3>
+			<h2>Comunidad</h2>
 			<p>
 				No fuimos creados para estar solos. Conecta con otros jóvenes, únete a
 				la Iglesia y caminemos juntos.
+			</p>
+		</div>
+
+		<div class="flex flex-col gap-2">
+			<h2>Transformación</h2>
+			<p>
+				Experimenta verdad, belleza y bondad. Escucha a conferencistas
+				reconocidos. Vive eventos impactantes, entretenimiento y ¡mucho más!
 			</p>
 		</div>
 	</div>

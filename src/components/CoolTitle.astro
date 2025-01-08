@@ -1,0 +1,103 @@
+---
+interface Properties {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className = "" } = Astro.props;
+const splittedText = text.split(""); // Replace spaces with non-breaking spaces
+---
+
+<div class="pvsContainer
+  -mx-6 border-2-
+  overflow-hidden
+  duration-0">
+  <h1 id="pvsText" class="w-full huge text-nowrap duration-0 ml-12 lg:ml-24">
+    {
+      splittedText.map((c: string) => {
+        if (c != " ") {
+          return <span>{c}</span>;
+        } else {
+          return <span class="w-6 md:w-24">&nbsp;</span>;
+        }
+      })
+    }
+  </h1>
+</div>
+
+<style>
+  span {
+    display: inline-block;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const allPvsContainers = document.querySelectorAll(
+    `.pvsContainer`,
+  ) as NodeListOf<HTMLElement>;
+
+  allPvsContainers.forEach((container) => {
+    const text = container.querySelector("#pvsText") as HTMLElement;
+    const chars = Array.from(text.querySelectorAll("span"));
+
+    gsap.fromTo(
+      text,
+      {
+        x: text.offsetWidth,
+      },
+      {
+        x: text.offsetWidth * -1,
+
+        scrollTrigger: {
+          trigger: text,
+          start: "top 70%",
+          end: "+=1000",
+          scrub: true,
+          pin: true,
+          pinnedContainer: container,
+          anticipatePin: 1,
+        },
+      },
+    );
+
+    gsap.fromTo(
+      chars,
+      {
+        opacity: 0,
+        y: (index) => Math.pow(Math.sin(index) * 3, 5),
+      },
+      {
+        duration: 1,
+        opacity: 1,
+        y: 0,
+        stagger: 7,
+        ease: "power1.in",
+        scrollTrigger: {
+          trigger: text,
+          start: "top 70%",
+          end: "+=900",
+          scrub: true,
+        },
+      },
+    );
+  });
+
+  const lenis = new Lenis();
+  // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+  lenis.on("scroll", ScrollTrigger.update);
+
+  // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+  // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+  });
+
+  // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+  gsap.ticker.lagSmoothing(0);
+</script>
