@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  background?: ImageMetadata;
+}
+
+import { Image } from "astro:assets";
+
+const { title, background } = Astro.props;
+---
+
+<div data-section class="flex flex-col gap-6 max-w-3xl self-center">
+  {
+    background && (
+      <Image src={background} alt="" class="h-[50svh] object-cover z-10" />
+    )
+  }
+
+  <h2>{title}</h2>
+
+  <div class="flex flex-col gap-2">
+    <slot />
+  </div>
+</div>
+
+<script>
+  import gsap from "../utils/gsap";
+
+  const sections = Array.from(
+    document.querySelectorAll("[data-section]") as NodeListOf<HTMLElement>,
+  );
+
+  sections.forEach((section) => {
+    const title = section.querySelector("h2");
+    const image = section.querySelector("img");
+
+    gsap.fromTo(
+      image,
+      {
+        scale: 1.5,
+        yPercent: 10,
+        borderRadius: "300px",
+      },
+      {
+        scale: 1,
+        yPercent: 0,
+        borderRadius: "999px",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 90%",
+          end: "top 40%",
+          scrub: true,
+        },
+      },
+    );
+
+    gsap.from(title, {
+      translateY: -200,
+      opacity: 0,
+      scrollTrigger: {
+        trigger: section,
+        start: "top 90%",
+        end: "top 40%",
+        scrub: true,
+      },
+    });
+  });
+</script>

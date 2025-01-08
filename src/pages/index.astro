@@ -3,18 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import HomeBanner from "../assets/images/home-banner.jpg";
 import RegisterCta from "../components/RegisterCta.astro";
-import CoolTitle from "../components/CoolTitle.astro";
-import FancySection from "../components/FancySection.astro";
-import Page from "../components/Page.astro";
-
-import encuentroA from "../assets/images/edwin-andrade-4V1dC_eoCwg-unsplash.jpg";
-import encuentroB from "../assets/images/thiago-barletta-36tX9ncYlzw-unsplash.jpg";
-
-import comunidadA from "../assets/images/thiago-barletta-36tX9ncYlzw-unsplash.jpg";
-import comunidadB from "../assets/images/rosie-sun-rTwhmFSoXC8-unsplash.jpg";
-
-import transformationA from "../assets/images/josh-applegate-_TgzNXPF9IM-unsplash.jpg";
-import transformationB from "../assets/images/josh-applegate-ikD_o6lSNNs-unsplash.jpg";
+import Why from "../components/sections/Why.astro";
+import Chip from "../components/Chip.astro";
 ---
 
 <Layout>
@@ -23,7 +13,7 @@ import transformationB from "../assets/images/josh-applegate-ikD_o6lSNNs-unsplas
 
 	<div
 		class="-mt-36 -mx-6 -z-10
-		rounded-b-[15%] md:rounded-b-[45%] overflow-x-hidden"
+		rounded-b-full md:rounded-b-[45%] overflow-x-hidden"
 	>
 		<Image
 			src={HomeBanner}
@@ -34,69 +24,15 @@ import transformationB from "../assets/images/josh-applegate-ikD_o6lSNNs-unsplas
 		<div
 			class="absolute inset-0 flex flex-col gap-6 items-center justify-center bg-black/20"
 		>
-			<h1 class="float-in uppercase text-center md:text-[10rem]">
-				Ven y Sígueme
-			</h1>
+			<h1 class="uppercase text-center md:text-[10rem]">Ven y Sígueme</h1>
 
-			<div class="float-in flex flex-col gap-2">
+			<div class="flex flex-col gap-2">
 				<h2>Monterrey, NL</h2>
-				<h4 class="font-sans">Marzo 6 - 8, 2025</h4>
+				<Chip>Marzo 7 - 9, 2025</Chip>
 			</div>
 		</div>
 	</div>
 
-	<CoolTitle text="¿Por qué deberías vivir SEEK?" />
+	<Why></Why>
 
-	<!--
-	<Page>
-		<FancySection
-			title="Encuentro"
-			leftImage={encuentroA}
-			rightImage={encuentroB}
-		>
-			Siempre estás llamado a profundizar en tu relación con Jesucristo y con su
-			Iglesia: ¡ven y descubre qué te espera!
-		</FancySection>
-
-		<FancySection
-			title="Comunidad"
-			leftImage={comunidadA}
-			rightImage={comunidadB}
-		>
-			<p>
-				No fuimos creados para estar solos. Conecta con otros jóvenes, únete a
-				la Iglesia y caminemos juntos.
-			</p>
-		</FancySection>
-
-		<FancySection
-			title="Transformación"
-			leftImage={transformationA}
-			rightImage={transformationB}
-		>
-			<p>
-				Experimenta verdad, belleza y bondad. Escucha a conferencistas
-				reconocidos. Vive eventos impactantes, entretenimiento y ¡mucho más!
-			</p>
-		</FancySection>
-	</Page>
-	 -->
-
-	<script>
-		import gsap from "../utils/gsap";
-
-		gsap.fromTo(
-			".float-in",
-			{
-				opacity: 0,
-				y: 10,
-			},
-			{
-				opacity: 1,
-				y: 0,
-				duration: 0.75,
-				stagger: 0.25,
-			},
-		);
-	</script>
 </Layout>

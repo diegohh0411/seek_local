@@ -52,7 +52,7 @@ h4 {
 }
 
 h5 {
-  @apply md:text-xl
+  @apply md:text-xl font-sans
 }
 
 a.default {
