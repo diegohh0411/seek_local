@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  leftImage?: ImageMetadata;
+  rightImage?: ImageMetadata;
+}
+
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+const { title, leftImage, rightImage } = Astro.props;
+---
+
+<div
+  class="fancysection
+  w-full flex flex-col justify-center gap-2
+  p-6
+  relative
+  min-h-[80svh]"
+>
+  {leftImage && <Image src={leftImage} alt="" class="fancysection-image" />}
+  {rightImage && <Image src={rightImage} alt="" class="fancysection-image" />}
+
+  <style>
+    .fancysection-image {
+      @apply absolute z-10 self-center h-full min-w-96 w-1/2 object-cover rounded-xl shadow-xl;
+    }
+  </style>
+
+  <div id="content">
+    <h1>{title}</h1>
+
+    <slot />
+  </div>
+</div>
+
+<script>
+  import gsap from "../utils/gsap";
+
+  const fancySections = document.querySelectorAll(
+    ".fancysection",
+  ) as NodeListOf<HTMLElement>;
+
+  fancySections.forEach((section) => {
+    const images = section.querySelectorAll(".fancysection-image");
+
+    gsap.fromTo(
+      images,
+      {
+        xPercent: 0,
+        y: 0,
+        rotate: (index) =>
+          index < images.length / 2 ? Math.random() * 20 : Math.random() * -20,
+      },
+      {
+        xPercent: (index) => (index < images.length / 2 ? -150 : 150),
+        y: 0,
+        rotate: (index) =>
+          index < images.length / 2 ? Math.random() * -2 : Math.random() * 2,
+        scrollTrigger: {
+          trigger: section,
+          start: "top center",
+          end: "top top",
+
+          scrub: true,
+
+          markers: true,
+        },
+      },
+    );
+  });
+</script>

@@ -1,22 +1,48 @@
 <div
   class="custom-cursor
-  hidden lg:block
-  fixed size-6 rounded-full
-  z-50
-bg-primary backdrop-invert duration-0 pointer-events-none mix-blend-difference"
+  hidden sm:block
+  fixed size-6 rounded-full z-50
+bg-primary backdrop-invert pointer-events-none mix-blend-difference"
+>
+</div>
+
+<div
+  class="custom-pointer
+  hidden sm:block
+  fixed size-1 rounded-full z-50
+  bg-white backdrop-inver pointer-events-none mix-blend-difference"
 >
 </div>
 
 <script>
+  import gsap from "../utils/gsap";
+
   const cursors = document.querySelectorAll(
     ".custom-cursor",
   ) as NodeListOf<HTMLElement>;
 
-  if (cursors.length > 0) {
+  const pointers = document.querySelectorAll(
+    ".custom-pointer",
+  ) as NodeListOf<HTMLElement>;
+
+  if (cursors.length > 0 && pointers.length > 0) {
     document.addEventListener("mousemove", (e) => {
       cursors.forEach((cursor) => {
-        cursor.style.top = e.clientY + "px";
-        cursor.style.left = e.clientX + "px";
+        gsap.to(cursor, {
+          x: e.clientX - 35,
+          y: e.clientY - 35,
+          ease: "power1.out",
+          duration: 0.5,
+        });
+      });
+
+      pointers.forEach((pointer) => {
+        gsap.to(pointer, {
+          x: e.clientX - 25,
+          y: e.clientY - 25,
+          ease: "none",
+          duration: 0,
+        });
       });
     });
   }

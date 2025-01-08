@@ -10,7 +10,7 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
 
 <div class="pvsContainer
   -mx-6 border-2-
-  overflow-hidden
+  overflow-x-hidden
   duration-0">
   <h1 id="pvsText" class="w-full huge text-nowrap duration-0 ml-12 lg:ml-24">
     {
@@ -32,11 +32,7 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
 </style>
 
 <script>
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-  import Lenis from "lenis";
-
-  gsap.registerPlugin(ScrollTrigger);
+  import gsap from "../utils/gsap";
 
   const allPvsContainers = document.querySelectorAll(
     `.pvsContainer`,
@@ -57,7 +53,7 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
         scrollTrigger: {
           trigger: text,
           start: "top 70%",
-          end: "+=1000",
+          end: "+=1500",
           scrub: true,
           pin: true,
           pinnedContainer: container,
@@ -70,34 +66,23 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
       chars,
       {
         opacity: 0,
+        x: (index) => Math.abs(Math.sin(index) * 3) * 50,
         y: (index) => Math.pow(Math.sin(index) * 3, 5),
       },
       {
         duration: 1,
         opacity: 1,
+        x: 0,
         y: 0,
         stagger: 7,
         ease: "power1.in",
         scrollTrigger: {
           trigger: text,
           start: "top 70%",
-          end: "+=900",
+          end: "+=1300",
           scrub: true,
         },
       },
     );
   });
-
-  const lenis = new Lenis();
-  // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
-  lenis.on("scroll", ScrollTrigger.update);
-
-  // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-  // This ensures Lenis's smooth scroll animation updates on each GSAP tick
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-  });
-
-  // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-  gsap.ticker.lagSmoothing(0);
 </script>
