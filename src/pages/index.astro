@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import HomeBanner from "../assets/images/home-banner.jpg";
+import RegisterCta from "../components/RegisterCta.astro";
 ---
 
 <Layout>
-	<Welcome />
+	<!-- Absolutely and Dynamically placed elements -->
+	<RegisterCta />
+
+	<div class="-mt-36 -mx-6 -z-10
+		rounded-b-[45%] overflow-hidden">
+		<Image
+			src={HomeBanner}
+			class="h-screen min-w-screen object-cover"
+			alt="Hero"
+		/>
+
+		<div
+			class="absolute inset-0 flex flex-col gap-6 items-center justify-center bg-black/20"
+		>
+			<h1 class="uppercase text-center lg:text-[10rem]">Ven y Sígueme</h1>
+
+			<div class="flex flex-col gap-2">
+				<h2>Monterrey, NL</h2>
+				<h4 class="font-sans">Marzo 6 - 8</h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex flex-col gap-6 max-w-3xl self-center">
+		<h1 class="text-center">¿Por qué vivir SEEK?</h1>
+
+		<div class="flex flex-col gap-2">
+			<h3>Encuentro</h3>
+			<p>
+				Siempre estás llamado a profundizar en tu relación con Jesucristo y con
+				su Iglesia: ¡ven y descubre qué te espera!
+			</p>
+		</div>
+
+		<div class="flex flex-col gap-2">
+			<h3>Comunidad</h3>
+			<p>
+				No fuimos creados para estar solos. Conecta con otros jóvenes, únete a
+				la Iglesia y caminemos juntos.
+			</p>
+		</div>
+	</div>
 </Layout>

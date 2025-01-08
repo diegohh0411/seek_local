@@ -1,0 +1,22 @@
+<div
+  class="custom-cursor
+  fixed size-6 rounded-full
+  z-50
+bg-primary backdrop-invert duration-0 pointer-events-none mix-blend-difference"
+>
+</div>
+
+<script>
+  const cursors = document.querySelectorAll(
+    ".custom-cursor",
+  ) as NodeListOf<HTMLElement>;
+
+  if (cursors.length > 0) {
+    document.addEventListener("mousemove", (e) => {
+      cursors.forEach((cursor) => {
+        cursor.style.top = e.clientY + "px";
+        cursor.style.left = e.clientX + "px";
+      });
+    });
+  }
+</script>

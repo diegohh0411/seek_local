@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Moret';
+  src: url('/src/assets/fonts/Moret.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Moret';
+  src: url('/src/assets/fonts/MoretItalics.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Acumin';
+  src: url('/src/assets/fonts/AcuminProWide.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+html * {
+  @apply !cursor-none transition-all duration-150
+}
+
+body {
+  @apply p-6 bg-black text-stone-100
+}
+
+h1, h2, h3, h4 {
+  @apply font-serif
+}
+
+h1 {
+  @apply text-6xl lg:text-8xl
+}
+
+h2 {
+  @apply text-4xl lg:text-6xl
+}
+
+h3 {
+  @apply text-2xl lg:text-4xl
+}
+
+h4 {
+  @apply text-xl lg:text-2xl
+}
+
+h5 {
+  @apply lg:text-xl
+}
+
+a.default {
+  @apply hover:opacity-50
+}
