@@ -10,7 +10,6 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
 
 <div class="pvsContainer
   -mx-6 border-2-
-  overflow-x-hidden
   duration-0">
   <h1 id="pvsText" class="w-full huge text-nowrap duration-0 ml-12 lg:ml-24">
     {
@@ -18,7 +17,7 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
         if (c != " ") {
           return <span>{c}</span>;
         } else {
-          return <span class="w-6 md:w-24">&nbsp;</span>;
+          return <span>&nbsp;</span>;
         }
       })
     }
@@ -45,19 +44,16 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
     gsap.fromTo(
       text,
       {
-        x: text.offsetWidth,
+        x: 0,
       },
       {
         x: text.offsetWidth * -1,
 
         scrollTrigger: {
           trigger: text,
-          start: "top 70%",
-          end: "+=1500",
+          start: "top 60%",
+          end: "top 30%",
           scrub: true,
-          pin: true,
-          pinnedContainer: container,
-          anticipatePin: 1,
         },
       },
     );
@@ -66,20 +62,17 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
       chars,
       {
         opacity: 0,
-        x: (index) => Math.abs(Math.sin(index) * 3) * 50,
-        y: (index) => Math.pow(Math.sin(index) * 3, 5),
+        yPercent: (index) => Math.abs(Math.cos(index % 30) * 40),
       },
       {
-        duration: 1,
         opacity: 1,
-        x: 0,
-        y: 0,
-        stagger: 7,
-        ease: "power1.in",
+        yPercent: 0,
+        stagger: 0.05,
+        ease: "elastic.in",
         scrollTrigger: {
           trigger: text,
-          start: "top 70%",
-          end: "+=1300",
+          start: "top bottom",
+          end: "top 30%",
           scrub: true,
         },
       },
