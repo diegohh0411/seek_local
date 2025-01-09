@@ -5,6 +5,7 @@ import HomeBanner from "../assets/images/home-banner.jpg";
 import RegisterCta from "../components/RegisterCta.astro";
 import Why from "../components/sections/Why.astro";
 import Chip from "../components/Chip.astro";
+import Section from "../components/Section.astro";
 ---
 
 <Layout>
@@ -33,6 +34,12 @@ import Chip from "../components/Chip.astro";
 		</div>
 	</div>
 
-	<Why></Why>
+	<Why />
 
+	<Section
+		title={{ text: "¿Listo para registrarte?", size: "h1" }}
+		class="rounded-3xl p-6 border-2 border-primary"
+	>
+		<a href="/registro" class="bg-primary hover:brightness-75 p-6 text-black text-center rounded">¡Regístrate!</a>
+	</Section>
 </Layout>

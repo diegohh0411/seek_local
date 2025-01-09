@@ -1,7 +1,7 @@
 <div
   class="custom-cursor
   hidden sm:block
-  fixed size-6 rounded-full z-50
+  fixed size-8 rounded-full z-50
 bg-primary backdrop-invert pointer-events-none mix-blend-difference"
 >
 </div>
@@ -29,8 +29,8 @@ bg-primary backdrop-invert pointer-events-none mix-blend-difference"
     document.addEventListener("mousemove", (e) => {
       cursors.forEach((cursor) => {
         gsap.to(cursor, {
-          x: e.clientX - 35,
-          y: e.clientY - 35,
+          x: e.clientX - 39,
+          y: e.clientY - 39,
           ease: "power1.out",
           duration: 0.5,
         });

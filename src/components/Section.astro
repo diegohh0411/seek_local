@@ -1,24 +1,35 @@
 ---
 interface Props {
-  title: string;
+  title?: {
+    text: string;
+    size: "h1" | "h2";
+  };
+
   background?: ImageMetadata;
+  class?: string;
 }
 
 import { Image } from "astro:assets";
 
-const { title, background } = Astro.props;
+const { title, background, class: className = "" } = Astro.props;
 ---
 
-<div data-section class="flex flex-col gap-6 max-w-3xl self-center">
+<div
+  data-section
+  class:list={["flex flex-col gap-6 max-w-3xl self-center p-6", className]}
+>
   {
     background && (
       <Image src={background} alt="" class="h-[50svh] object-cover z-10" />
     )
   }
 
-  <h2>{title}</h2>
+  <div class="overflow-hidden -m-6 p-6">
+    {title && title.size == "h1" && <h1>{title.text}</h1>}
+    {title && title.size == "h2" && <h2>{title.text}</h2>}
+  </div>
 
-  <div class="flex flex-col gap-2">
+  <div class:list={["flex flex-col gap-2"]}>
     <slot />
   </div>
 </div>
@@ -31,7 +42,7 @@ const { title, background } = Astro.props;
   );
 
   sections.forEach((section) => {
-    const title = section.querySelector("h2");
+    const title = section.querySelector("h1, h2");
     const image = section.querySelector("img");
 
     gsap.fromTo(
@@ -39,12 +50,12 @@ const { title, background } = Astro.props;
       {
         scale: 1.5,
         yPercent: 10,
-        borderRadius: "300px",
+        borderRadius: "0",
       },
       {
         scale: 1,
         yPercent: 0,
-        borderRadius: "999px",
+        borderRadius: "1.5rem",
         scrollTrigger: {
           trigger: section,
           start: "top 90%",
@@ -58,7 +69,7 @@ const { title, background } = Astro.props;
       translateY: -200,
       opacity: 0,
       scrollTrigger: {
-        trigger: section,
+        trigger: title,
         start: "top 90%",
         end: "top 40%",
         scrub: true,

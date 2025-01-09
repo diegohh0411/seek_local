@@ -5,22 +5,16 @@ interface Properties {
 }
 
 const { text, class: className = "" } = Astro.props;
-const splittedText = text.split(""); // Replace spaces with non-breaking spaces
 ---
 
 <div class="pvsContainer
   -mx-6 border-2-
   duration-0">
-  <h1 id="pvsText" class="w-full huge text-nowrap duration-0 ml-12 lg:ml-24 mb-12">
-    {
-      splittedText.map((c: string) => {
-        if (c != " ") {
-          return <span>{c}</span>;
-        } else {
-          return <span class="w-8 md:w-16">&nbsp;</span>;
-        }
-      })
-    }
+  <h1
+    id="pvsText"
+    class="w-full huge text-nowrap duration-0 mx-12 lg:mx-24 mb-12"
+  >
+    {text}
   </h1>
 </div>
 
@@ -39,40 +33,21 @@ const splittedText = text.split(""); // Replace spaces with non-breaking spaces
 
   allPvsContainers.forEach((container) => {
     const text = container.querySelector("#pvsText") as HTMLElement;
-    const chars = Array.from(text.querySelectorAll("span"));
 
     gsap.fromTo(
       text,
       {
-        x: text.offsetWidth * 0.7,
+        x: 0,
       },
       {
-        x: text.offsetWidth * -1,
-
+        x:
+          container.offsetWidth -
+          container.scrollWidth -
+          (parseFloat(getComputedStyle(text).marginRight) ?? 0),
         scrollTrigger: {
           trigger: text,
-          start: "top 80%",
-          end: "top 20%",
-          scrub: true,
-        },
-      },
-    );
-
-    gsap.fromTo(
-      chars,
-      {
-        opacity: 0,
-        // yPercent: (index) => Math.abs(Math.cos(index) * 40),
-      },
-      {
-        opacity: 1,
-        // yPercent: 0,
-        stagger: 0.05,
-        // ease: "elastic.in",
-        scrollTrigger: {
-          trigger: text,
-          start: "top 80%",
-          end: "top 20%",
+          start: "center center",
+          end: "center 10%",
           scrub: true,
         },
       },
