@@ -1,5 +1,6 @@
 ---
 interface Props {
+  id?: string;
   title?: {
     text: string;
     size: "h1" | "h2";
@@ -11,12 +12,16 @@ interface Props {
 
 import { Image } from "astro:assets";
 
-const { title, background, class: className = "" } = Astro.props;
+const { id = "", title, background, class: className = "" } = Astro.props;
 ---
 
 <div
+  id={id}
   data-section
-  class:list={["flex flex-col gap-6 max-w-3xl self-center p-6", className]}
+  class:list={[
+    "flex flex-col gap-6 w-full max-w-3xl self-center p-6",
+    className,
+  ]}
 >
   {
     background && (

@@ -19,12 +19,10 @@
   font-style: normal;
 }
 
-html * {
- 
-}
+html * {}
 
 body {
-  @apply p-6 bg-black text-stone-100
+  @apply p-6 bg-black text-stone-100 text-wrap
 }
 
 h1, h2, h3, h4 {
@@ -55,6 +53,6 @@ h5 {
   @apply md:text-xl font-sans
 }
 
-a.default {
-  @apply hover:opacity-50
+.hoverable {
+  @apply hover:brightness-75 hover:-translate-y-[10%] hover:-rotate-1 transition-all duration-300 ease-in-out
 }

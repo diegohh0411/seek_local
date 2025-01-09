@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import TextPlugin from 'gsap/TextPlugin';
 import Lenis from 'lenis';
 
 // Prevent multiple registrations
@@ -7,6 +8,9 @@ if (!(gsap as any).plugins.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+if (!(gsap as any).plugins.TextPlugin) {
+  gsap.registerPlugin(TextPlugin);
+}
 
 // Initialize a new Lenis instance for smooth scrolling
 const lenis = new Lenis();

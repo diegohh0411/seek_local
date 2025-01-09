@@ -23,23 +23,90 @@ import Section from "../components/Section.astro";
 		/>
 
 		<div
-			class="absolute inset-0 flex flex-col gap-6 items-center justify-center bg-black/20"
+			id="hero_section"
+			class="absolute inset-0 p-6 flex flex-col gap-6 items-center justify-center bg-black/40"
 		>
-			<h1 class="uppercase text-center md:text-[10rem]">Ven y Sígueme</h1>
+			<h1 class="parallax-item uppercase text-center md:text-[10rem]">
+				Ven y Sígueme
+			</h1>
 
-			<div class="flex flex-col gap-2">
-				<h2>Monterrey, NL</h2>
+			<h5 class="parallax-item text-center">
+				La conferencia de universitarios católicos para vivir, crecer y amar.
+			</h5>
+
+			<div class="parallax-item flex flex-row items-center gap-2">
+				<h3>Monterrey, NL</h3>
 				<Chip>Marzo 7 - 9, 2025</Chip>
 			</div>
 		</div>
+		<script>
+			import gsap from "../utils/gsap";
+
+			gsap.to("#hero_section .parallax-item", {
+				scrollTrigger: {
+					trigger: "#hero_section",
+					start: "center center",
+					end: "center top",
+					scrub: true,
+				},
+				y: (index) => {
+					const distances = ["-20svh", "-15svh", "-10svh"];
+					return distances[index % distances.length];
+				},
+			});
+		</script>
 	</div>
 
 	<Why />
 
 	<Section
-		title={{ text: "¿Listo para registrarte?", size: "h1" }}
+		id="registro_bottom_cta"
+		title={{ text: "¿Listo para vivir?", size: "h1" }}
 		class="rounded-3xl p-6 border-2 border-primary"
 	>
-		<a href="/registro" class="bg-primary hover:brightness-75 p-6 text-black text-center rounded">¡Regístrate!</a>
+		<a
+			href="/registro"
+			class="bg-primary hoverable p-6 text-black text-center rounded"
+			><h4>¡¡ Regístrate !!</h4></a
+		>
+
+		<script>
+			import gsap from "../utils/gsap";
+
+			const tl = gsap.timeline({
+				repeat: -1,
+				scrollTrigger: {
+					trigger: "#registro_bottom_cta",
+					start: "center bottom",
+				},
+			});
+
+			tl.to("#registro_bottom_cta h1", {
+				duration: 2,
+				delay: 2,
+				text: {
+					value: `¿Listo para crecer?`,
+					type: "diff",
+				},
+			})
+				.to("#registro_bottom_cta h1", {
+					duration: 2,
+					delay: 2,
+
+					text: {
+						value: `¿Listo para amar?`,
+						type: "diff",
+					},
+				})
+				.to("#registro_bottom_cta h1", {
+					duration: 2,
+					delay: 2,
+
+					text: {
+						value: `¿Listo para vivir?`,
+						type: "diff",
+					},
+				});
+		</script>
 	</Section>
 </Layout>

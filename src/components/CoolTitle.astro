@@ -46,8 +46,8 @@ const { text, class: className = "" } = Astro.props;
           (parseFloat(getComputedStyle(text).marginRight) ?? 0),
         scrollTrigger: {
           trigger: text,
-          start: "center center",
-          end: "center 10%",
+          start: "center 75%",
+          end: "center 25%",
           scrub: true,
         },
       },
