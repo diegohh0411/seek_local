@@ -1,18 +1,22 @@
+---
+import BuyTicketLink from "./BuyTicketLink.astro";
+---
+
 <div
   class="fixed z-50
 bottom-0 inset-x-0
 lg:inset-y-0 lg:left-0 lg:inset-x-auto
 flex items-center justify-center"
 >
-  <a href="/registro">
+  <BuyTicketLink>
     <h4
       class="py-2 px-12 rounded-t-full
-      lg:-rotate-90 lg:-ml-14 lg:rounded-b-full lg:rounded-t-none
+      lg:-rotate-90 lg:ml-[-4.5rem] lg:rounded-b-full lg:rounded-t-none
       border-2 border-primary
       bg-primary hover:bg-black
       text-black hover:text-primary"
     >
       Regístrate
     </h4>
-  </a>
+  </BuyTicketLink>
 </div>

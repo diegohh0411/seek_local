@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import TextPlugin from 'gsap/TextPlugin';
+import Observer from 'gsap/Observer';
 import Lenis from 'lenis';
 
 // Prevent multiple registrations
@@ -10,6 +11,10 @@ if (!(gsap as any).plugins.ScrollTrigger) {
 
 if (!(gsap as any).plugins.TextPlugin) {
   gsap.registerPlugin(TextPlugin);
+}
+
+if (!(gsap as any).plugins.Observer) {
+  gsap.registerPlugin(Observer);
 }
 
 // Initialize a new Lenis instance for smooth scrolling
@@ -28,3 +33,4 @@ gsap.ticker.add((time) => {
 gsap.ticker.lagSmoothing(0);
 
 export default gsap;
+export { Observer };

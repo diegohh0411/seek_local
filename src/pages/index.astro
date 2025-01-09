@@ -6,16 +6,12 @@ import RegisterCta from "../components/RegisterCta.astro";
 import Why from "../components/sections/Why.astro";
 import Chip from "../components/Chip.astro";
 import Section from "../components/Section.astro";
+import BuyTicketLink from "../components/BuyTicketLink.astro";
 ---
 
 <Layout>
-	<!-- Absolutely and Dynamically placed elements -->
-	<RegisterCta />
-
-	<div
-		class="-mt-36 -mx-6 -z-10
-		rounded-b-full md:rounded-b-[45%] overflow-x-hidden"
-	>
+	<div class="-mt-36 -mx-6
+		rounded-b-full md:rounded-b-[45%] overflow-x-hidden">
 		<Image
 			src={HomeBanner}
 			class="h-svh min-w-screen object-cover"
@@ -38,7 +34,12 @@ import Section from "../components/Section.astro";
 				<h3>Monterrey, NL</h3>
 				<Chip>Marzo 7 - 9, 2025</Chip>
 			</div>
+
+			<BuyTicketLink class="parallax-item bg-primary px-6 py-2 rounded-full hoverable">
+				<h5>Regístrate</h5>
+			</BuyTicketLink>
 		</div>
+
 		<script>
 			import gsap from "../utils/gsap";
 
@@ -50,7 +51,7 @@ import Section from "../components/Section.astro";
 					scrub: true,
 				},
 				y: (index) => {
-					const distances = ["-20svh", "-15svh", "-10svh"];
+					const distances = ["-20svh", "-15svh", "-10svh", "-5svh"];
 					return distances[index % distances.length];
 				},
 			});
@@ -64,11 +65,10 @@ import Section from "../components/Section.astro";
 		title={{ text: "¿Listo para vivir?", size: "h1" }}
 		class="rounded-3xl p-6 border-2 border-primary"
 	>
-		<a
-			href="/registro"
+		<BuyTicketLink
 			class="bg-primary hoverable p-6 text-black text-center rounded"
-			><h4>¡¡ Regístrate !!</h4></a
-		>
+			><h4>Regístrate</h4>
+		</BuyTicketLink>
 
 		<script>
 			import gsap from "../utils/gsap";
