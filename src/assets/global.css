@@ -19,7 +19,9 @@
   font-style: normal;
 }
 
-html * {}
+html * {
+  @apply cursor-none
+}
 
 body {
   @apply p-6 bg-black text-stone-100 text-wrap

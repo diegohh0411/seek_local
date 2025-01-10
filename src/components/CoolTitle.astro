@@ -4,19 +4,20 @@ interface Properties {
   class?: string;
 }
 
-const { text, class: className = "" } = Astro.props;
+const { text = "", class: className = "" } = Astro.props;
 ---
 
-<div class="pvsContainer
-  -mx-6 border-2-
-  duration-0">
-  <h1
-    id="pvsText"
-    class="w-full huge text-nowrap duration-0 mx-12 lg:mx-24 mb-12"
-  >
-    {text}
-  </h1>
-</div>
+<h1 data-cool-title class="huge items-center justify-between">
+  {
+    text.split(" ").map((word: string) => (
+      <span class="word mr-8 md:mr-12">
+        {word.split("").map((letter: string) => (
+          <span class="letter">{letter}</span>
+        ))}
+      </span>
+    ))
+  }
+</h1>
 
 <style>
   span {
@@ -27,30 +28,23 @@ const { text, class: className = "" } = Astro.props;
 <script>
   import gsap from "../utils/gsap";
 
-  const allPvsContainers = document.querySelectorAll(
-    `.pvsContainer`,
-  ) as NodeListOf<HTMLElement>;
-
-  allPvsContainers.forEach((container) => {
-    const text = container.querySelector("#pvsText") as HTMLElement;
-
-    gsap.fromTo(
-      text,
-      {
-        x: 0,
+  gsap.fromTo(
+    "[data-cool-title] span",
+    {
+      opacity: 0.2,
+      y: "1rem",
+    },
+    {
+      opacity: 1,
+      y: 0,
+      ease: "none",
+      stagger: 0.03,
+      scrollTrigger: {
+        trigger: "[data-cool-title]",
+        start: "bottom bottom",
+        end: "bottom center",
+        scrub: true,
       },
-      {
-        x:
-          container.offsetWidth -
-          container.scrollWidth -
-          (parseFloat(getComputedStyle(text).marginRight) ?? 0),
-        scrollTrigger: {
-          trigger: text,
-          start: "center 75%",
-          end: "center 25%",
-          scrub: true,
-        },
-      },
-    );
-  });
+    },
+  );
 </script>

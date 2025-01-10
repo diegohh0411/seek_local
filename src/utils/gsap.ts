@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import TextPlugin from 'gsap/TextPlugin';
 import Observer from 'gsap/Observer';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import Lenis from 'lenis';
 
 // Prevent multiple registrations
@@ -15,6 +16,10 @@ if (!(gsap as any).plugins.TextPlugin) {
 
 if (!(gsap as any).plugins.Observer) {
   gsap.registerPlugin(Observer);
+}
+
+if (!(gsap as any).plugins.ScrollToPlugin) {
+  gsap.registerPlugin(ScrollToPlugin);
 }
 
 // Initialize a new Lenis instance for smooth scrolling
