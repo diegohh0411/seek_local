@@ -1,0 +1,96 @@
+---
+import Hero from "../Icons/Hero.Outline.astro";
+
+interface Props {
+  text?: string;
+  id?: string;
+  class?: string;
+  href?: string;
+}
+const { text = "", id = "", class: className = "", href } = Astro.props;
+---
+
+<berit-button id={id} data-initial-text={text}>
+  {href && <a href={href} class="hidden" />}
+  <button
+    class={`
+      min-w-48 w-full 
+      rounded-3xl px-6 py-2 
+      relative overflow-hidden 
+      flex items-center justify-center gap-1 
+      border-2 border-primary
+      backdrop-blur backdrop-brightness-125 
+      ${className}`}
+  >
+    <Hero name="check" class="hidden animate-bounce" />
+    <Hero name="arrow-path" class="hidden animate-spin" />
+    <h5>{text}</h5>
+  </button>
+</berit-button>
+
+<script>
+  import gsap, { Observer } from "../../utils/gsap";
+
+  class BeritButton extends HTMLElement {
+    check = this.querySelector("[data-icon='check']") as SVGElement;
+    arrowPath = this.querySelector("[data-icon='arrow-path']") as SVGElement;
+    text = this.querySelector("h5") as HTMLHeadingElement;
+    button = this.querySelector("button") as HTMLButtonElement;
+    initialText = this.dataset.initialText ?? "";
+    initialBackgroundColor = this.button.style.backgroundColor;
+
+    anchorElement = this.querySelector("a") as HTMLAnchorElement;
+
+    connectedCallback() {
+      Observer.create({
+        target: this,
+        onHover: () => {
+          gsap.to(this.button, {
+            scale: 1.1,
+            rotate: -2,
+            backgroundColor: "transparent",
+          });
+        },
+        onHoverEnd: () => {
+          gsap.to(this.button, {
+            scale: 1,
+            rotate: 0,
+            backgroundColor: this.initialBackgroundColor,
+          });
+        },
+        onClick: () => {
+          if (this.anchorElement) {
+            this.anchorElement.click();
+            this.loading();
+          }
+        },
+      });
+    }
+
+    loading() {
+      this.check.classList.toggle("hidden", true);
+      this.arrowPath.classList.toggle("hidden", false);
+      this.text.classList.toggle("hidden", true);
+    }
+
+    success(message?: string) {
+      this.check.classList.toggle("hidden", false);
+      this.arrowPath.classList.toggle("hidden", true);
+
+      if (message) {
+        this.text.textContent = message;
+      }
+      this.text.classList.toggle("hidden", false);
+    }
+
+    reset() {
+      this.check.classList.toggle("hidden", true);
+      this.arrowPath.classList.toggle("hidden", true);
+
+      this.text.textContent = this.initialText;
+      this.text.classList.toggle("hidden", false);
+    }
+  }
+
+  customElements.define("berit-button", BeritButton);
+</script>

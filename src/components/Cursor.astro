@@ -1,49 +1,51 @@
 <div
-  class="custom-cursor
-  hidden sm:block
+  data-custom-cursor
+  class="hidden sm:block
   fixed size-8 rounded-full z-50
 bg-primary backdrop-invert pointer-events-none mix-blend-difference"
 >
 </div>
 
 <div
-  class="custom-pointer
-  hidden sm:block
+  data-custom-pointer
+  class="hidden sm:block
   fixed size-1 rounded-full z-50
   bg-white backdrop-inver pointer-events-none mix-blend-difference"
 >
 </div>
 
 <script>
-  import gsap from "../utils/gsap";
+  import gsap, { Observer } from "../utils/gsap";
 
-  const cursors = document.querySelectorAll(
-    ".custom-cursor",
-  ) as NodeListOf<HTMLElement>;
+  const cursor = document.querySelector("[data-custom-cursor]") as HTMLElement;
 
-  const pointers = document.querySelectorAll(
-    ".custom-pointer",
-  ) as NodeListOf<HTMLElement>;
+  const pointer = document.querySelector(
+    "[data-custom-pointer]",
+  ) as HTMLElement;
 
-  if (cursors.length > 0 && pointers.length > 0) {
-    document.addEventListener("mousemove", (e) => {
-      cursors.forEach((cursor) => {
-        gsap.to(cursor, {
-          x: e.clientX - 39,
-          y: e.clientY - 39,
-          ease: "power1.out",
-          duration: 0.5,
-        });
+  Observer.create({
+    target: window,
+    type: "pointer",
+    onMove: (self) => {
+      const { x, y } = self;
+      const { paddingLeft, paddingTop } = window.getComputedStyle(
+        window.document.body,
+      );
+
+      const newX = (x ?? 0) - parseInt(paddingLeft);
+      const newY = (y ?? 0) - parseInt(paddingTop);
+
+      gsap.to(pointer, {
+        x: newX - pointer.clientWidth / 2,
+        y: newY - pointer.clientHeight / 2,
+        ease: "none",
+        duration: 0,
       });
 
-      pointers.forEach((pointer) => {
-        gsap.to(pointer, {
-          x: e.clientX - 25,
-          y: e.clientY - 25,
-          ease: "none",
-          duration: 0,
-        });
+      gsap.to(cursor, {
+        x: newX - cursor.clientWidth / 2,
+        y: newY - cursor.clientHeight / 2,
       });
-    });
-  }
+    },
+  });
 </script>

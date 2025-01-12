@@ -1,13 +1,11 @@
 ---
-import BuyTicketLink from "./BuyTicketLink.astro";
+
 ---
 
 <div id="nav_bar" class="grid grid-cols-2 z-50">
-  <a href="/" class="default"><h2>SEEK Local</h2></a>
+  <a href="/" class="hoverable"><h2>SEEK Local</h2></a>
 
   <div class="flex gap-6 items-center justify-self-end">
-    <BuyTicketLink id="nav_cta" class="hoverable"
-      ><h3>Regístrate</h3></BuyTicketLink
-    >
+    <a href="/auth" class="hoverable"><h5>Registrarse</h5></a>
   </div>
 </div>
