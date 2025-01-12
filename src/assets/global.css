@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
 @font-face {
   font-family: 'Moret';
   src: url('/src/assets/fonts/Moret.woff2') format('woff2');
@@ -52,7 +58,7 @@ h5 {
 }
 
 .hoverable {
-  @apply hover:brightness-75
+  @apply hover:brightness-75 hover:underline
 }
 
 input {
@@ -61,4 +67,14 @@ input {
 
 input:disabled {
   @apply opacity-50 cursor-not-allowed;
+}
+
+p.error {
+  @apply text-red-600;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }

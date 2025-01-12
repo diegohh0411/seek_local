@@ -6,8 +6,15 @@ interface Props {
   id?: string;
   class?: string;
   href?: string;
+  primary?: boolean;
 }
-const { text = "", id = "", class: className = "", href } = Astro.props;
+const {
+  text = "",
+  id = "",
+  class: className = "",
+  href,
+  primary = false,
+} = Astro.props;
 ---
 
 <berit-button id={id} data-initial-text={text}>
@@ -18,8 +25,9 @@ const { text = "", id = "", class: className = "", href } = Astro.props;
       rounded-3xl px-6 py-2 
       relative overflow-hidden 
       flex items-center justify-center gap-1 
+      backdrop-blur backdrop-brightness-125
       border-2 border-primary
-      backdrop-blur backdrop-brightness-125 
+      ${primary ? " bg-primary" : ""}
       ${className}`}
   >
     <Hero name="check" class="hidden animate-bounce" />

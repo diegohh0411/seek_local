@@ -34,7 +34,12 @@ import Button from "../components/BeritComponents/Button.astro";
 				<Chip>Marzo 7 - 9, 2025</Chip>
 			</div>
 
-			<Button href="/auth" class="parallax-item bg-primary" text="Regístrate" />
+			<Button
+				href="/register"
+				class="parallax-item"
+				primary={true}
+				text="Regístrate"
+			/>
 		</div>
 
 		<script>
@@ -62,9 +67,6 @@ import Button from "../components/BeritComponents/Button.astro";
 		title={{ text: "¿Listo para vivir?", size: "h1" }}
 		class="rounded-3xl p-6"
 	>
-		<Button
-			text="Regístrate"
-			class="bg-primary hoverable p-6 text-center rounded w-fit"
-		/>
+		<Button text="Regístrate" class="" />
 	</Section>
 </Layout>

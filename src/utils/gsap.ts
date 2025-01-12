@@ -37,25 +37,5 @@ gsap.ticker.add((time) => {
 // Disable lag smoothing in GSAP to prevent any delay in scroll animations
 gsap.ticker.lagSmoothing(0);
 
-// Common Hoverable behavior
-document.querySelectorAll('.hoverable').forEach((el) => {
-  Observer.create({
-    target: el,
-    onHover: (self) => {
-      console.log(self.target);
-      gsap.to(self.target, {
-        scale: 1.1,
-        duration: 0.5,
-      });
-    },
-    onHoverEnd: (self) => {
-      gsap.to(self.target, {
-        scale: 1,
-        duration: 1,
-      });
-    },
-  });
-})
-
 export default gsap;
 export { Observer };
