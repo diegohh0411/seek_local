@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import HomeBanner from "../assets/images/home-banner.jpg";
 import Why from "../components/sections/Why.astro";
+import Details from "@/components/sections/Details.astro";
 import Chip from "../components/Chip.astro";
 import Section from "../components/Section.astro";
 import Button from "../components/BeritComponents/Button.astro";
@@ -35,7 +36,7 @@ import Button from "../components/BeritComponents/Button.astro";
 			</div>
 
 			<Button
-				href="/register"
+				href="https://mpago.la/1hBRBVv"
 				class="parallax-item"
 				primary={true}
 				text="Regístrate"
@@ -62,11 +63,13 @@ import Button from "../components/BeritComponents/Button.astro";
 
 	<Why />
 
+	<Details />
+
 	<Section
 		id="registro_bottom_cta"
 		title={{ text: "¿Listo para vivir?", size: "h1" }}
-		class="rounded-3xl p-6"
+		class="rounded-3xl p-6 border-2 border-primary"
 	>
-		<Button text="Regístrate" class="" />
+		<Button href="https://mpago.la/1hBRBVv" text="Regístrate" class="" />
 	</Section>
 </Layout>

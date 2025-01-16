@@ -1,0 +1,27 @@
+---
+import Section from "@/components/Section.astro";
+import HeroIcon from "../Icons/Hero.Outline.astro";
+---
+<Section title={{ text: "Detalles", size: "h2" }} class="">
+    <div class="grid grid-cols-[auto_1fr] gap-6">
+        <div class="flex items-center gap-1 font-bold">
+            <HeroIcon name="map-pin" class="size-5" />
+            <p>Ubicación</p>
+        </div>
+        <p>Universidad de Monterrey (UDEM)</p>
+
+        <div class="flex items-center gap-1 font-bold">
+            <HeroIcon name="calendar" class="size-5" />
+            <p>Fechas</p>
+        </div>
+        <p>7 - 9 de Marzo de 2025</p>
+
+        <div class="flex items-center gap-1 font-bold">
+            <HeroIcon name="currency-dollar" class="size-5" />
+            <p>Costo</p>
+        </div>
+        <p>1,000 MXN</p>
+    </div>
+    
+    
+</Section>
