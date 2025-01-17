@@ -15,7 +15,7 @@ export default {
     			]
     		},
     		colors: {
-    			primary: '#97a89b'
+    			primary: 'rgb(164, 189, 255)'
     		},
     		borderRadius: {
     			lg: 'var(--radius)',

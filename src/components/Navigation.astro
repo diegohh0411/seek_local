@@ -1,11 +1,10 @@
 ---
-
+import { Image } from "astro:assets"
+import SEEKLocalLogo from "@/assets/images/SEEK MTY_Logo_Long 4.png"
 ---
 
-<div id="nav_bar" class="grid grid-cols-2 z-50">
-  <a href="/" class="hoverable"><h2>SEEK Local</h2></a>
-
-  <div class="flex gap-6 items-center justify-self-end">
-    <a href="https://mpago.la/1hBRBVv" class="hoverable"><h5>Registrarse</h5></a>
-  </div>
+<div id="nav_bar" class="flex justify-center z-50">
+  <a href="/" class="hoverable w-fit">
+    <Image src={SEEKLocalLogo} alt="SEEK Local logo" class="h-8 md:h-14 w-auto" />
+  </a>
 </div>
