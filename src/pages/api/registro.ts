@@ -3,11 +3,7 @@ import { type APIRoute } from "astro";
 import { formSchema } from "@/utils/formDataValidation";
 import { z } from "zod";
 
-import { Client } from "@notionhq/client";
-
-const notion = new Client({
-    auth: "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"
-})
+import { database_registration_id, notion } from "@/utils/notion";
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
     /**
@@ -24,14 +20,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         try {
             formSchema.parse(data);
         } catch (e) {
-            return new Response(JSON.stringify({ 
+            return new Response(JSON.stringify({
                 validationErrors: e,
-            }),{ status: 400 })
+            }), { status: 400 })
         }
 
         const response = await notion.pages.create({
             parent: {
-                database_id: "18162de3ddab8004b6d8d3e7fe6416ad"
+                database_id: database_registration_id
             },
             properties: {
                 Nombre: {
@@ -40,13 +36,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                         {
                             type: "text",
                             text: {
-                                content: data.nombre 
+                                content: data.nombre
                             }
                         }
                     ]
                 },
                 Apellidos: {
-                    type: 'rich_text', 
+                    type: 'rich_text',
                     rich_text: [
                         {
                             type: "text",
@@ -54,7 +50,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                                 content: data.apellidos, link: null
                             }
                         }
-                    ] 
+                    ]
                 },
                 Edad: {
                     type: "number",
@@ -81,7 +77,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                     }
                 },
                 Residencia: {
-                    type: "select", 
+                    type: "select",
                     select: {
                         name: (data.residencia_alternativa ?? data.residencia).replace(',', '')
                     }
@@ -107,11 +103,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                                 content: data.referencia ?? "", link: null
                             }
                         }
-                    ] 
+                    ]
                 }
             }
         })
-    
+
         return new Response("", { status: 200 });
     } catch (error) {
         const response = await notion.pages.create({
@@ -130,8 +126,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                         }
                     ]
                 },
-                Error:  {
-                    type: 'rich_text', 
+                Error: {
+                    type: 'rich_text',
                     rich_text: [
                         {
                             type: "text",
@@ -139,7 +135,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                                 content: JSON.stringify(error), link: null
                             }
                         }
-                    ] 
+                    ]
                 },
                 "HTTP status code": {
                     type: "select",
@@ -148,7 +144,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                     }
                 },
                 "IP Address": {
-                    type: 'rich_text', 
+                    type: 'rich_text',
                     rich_text: [
                         {
                             type: "text",
@@ -156,13 +152,24 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                                 content: JSON.stringify(clientAddress), link: null
                             }
                         }
-                    ] 
+                    ]
+                },
+                "Request body": {
+                    type: 'rich_text',
+                    rich_text: [
+                        {
+                            type: "text",
+                            text: {
+                                content: JSON.stringify(await request.json()), link: null
+                            }
+                        }
+                    ]
                 }
             }
         })
 
-        return new Response(JSON.stringify({ 
-            message: "Tuvimos un error en nuestro servidor y estamos trabajando para resolverlo. Por favor, intenta más tarde..." 
-        }),{ status: 500 })
+        return new Response(JSON.stringify({
+            message: "Tuvimos un error en nuestro servidor y estamos trabajando para resolverlo. Por favor, intenta más tarde..."
+        }), { status: 500 })
     }
 }
