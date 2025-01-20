@@ -1,0 +1,8 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import Section from "@/components/Section.astro"
+import { RegistrationForm } from "@/components/registration"
+---
+<Layout showCursor={true}>
+    <RegistrationForm client:load />
+</Layout>

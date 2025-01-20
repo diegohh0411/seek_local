@@ -3,6 +3,11 @@ import "../assets/global.css";
 import Cursor from "../components/Cursor.astro";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
+
+interface Props {
+	showCursor?: boolean;
+}
+const { showCursor = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -30,6 +35,9 @@ import Navigation from "../components/Navigation.astro";
 		<slot />
 		<Footer />
 
-		<Cursor />
+		{
+			!showCursor &&
+			<Cursor />
+		}
 	</body>
 </html>

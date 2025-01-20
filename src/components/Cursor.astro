@@ -17,6 +17,8 @@ bg-primary backdrop-invert pointer-events-none mix-blend-difference"
 <script>
   import gsap, { Observer } from "../utils/gsap";
 
+  document.body.setAttribute("style", "cursor: none;");
+
   const cursor = document.querySelector("[data-custom-cursor]") as HTMLElement;
 
   const pointer = document.querySelector(
