@@ -5,13 +5,11 @@ import { z } from "zod";
 
 import { Client } from "@notionhq/client";
 
-// const { Client } = require("@notionhq/client");
 const notion = new Client({
     auth: "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"
 })
 
-
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
     /**
     const result = await notion.databases.query({
         database_id: "18162de3ddab8004b6d8d3e7fe6416ad"
@@ -115,7 +113,54 @@ export const POST: APIRoute = async ({ request }) => {
         })
     
         return new Response("", { status: 200 });
-    } catch {
+    } catch (error) {
+        const response = await notion.pages.create({
+            parent: {
+                database_id: "18162de3ddab8042ba01dd0eddd7436e"
+            },
+            properties: {
+                Name: {
+                    type: "title",
+                    title: [
+                        {
+                            type: "text",
+                            text: {
+                                content: (new Date()).toISOString()
+                            }
+                        }
+                    ]
+                },
+                Error:  {
+                    type: 'rich_text', 
+                    rich_text: [
+                        {
+                            type: "text",
+                            text: {
+                                content: JSON.stringify(error), link: null
+                            }
+                        }
+                    ] 
+                },
+                "HTTP status code": {
+                    type: "select",
+                    select: {
+                        name: "500"
+                    }
+                },
+                "IP Address": {
+                    type: 'rich_text', 
+                    rich_text: [
+                        {
+                            type: "text",
+                            text: {
+                                content: JSON.stringify(clientAddress), link: null
+                            }
+                        }
+                    ] 
+                }
+            }
+        })
+
         return new Response(JSON.stringify({ 
             message: "Tuvimos un error en nuestro servidor y estamos trabajando para resolverlo. Por favor, intenta más tarde..." 
         }),{ status: 500 })
