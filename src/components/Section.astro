@@ -6,13 +6,15 @@ interface Props {
     size: "h1" | "h2";
   };
 
-  background?: ImageMetadata;
+  image?: ImageMetadata;
+  imageClasses?: string;
+
   class?: string;
 }
 
 import { Image } from "astro:assets";
 
-const { id = "", title, background, class: className = "" } = Astro.props;
+const { id = "", title, image, imageClasses, class: className = "" } = Astro.props;
 ---
 
 <div
@@ -24,8 +26,8 @@ const { id = "", title, background, class: className = "" } = Astro.props;
   ]}
 >
   {
-    background && (
-      <Image src={background} alt="" class="h-[50svh] object-cover z-10" />
+    image && (
+      <Image src={image} alt="" class={`h-[50svh] object-cover z-10 ${imageClasses ?? ''}`} />
     )
   }
 
