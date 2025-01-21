@@ -1,9 +1,9 @@
 ---
 interface Props {
-  email: string;
+  regno: string;
 }
 
-const { email } = Astro.props;
+const { regno } = Astro.props;
 
 import { notion, database_registration_id } from "@/utils/notion";
 import type { DatabaseObjectResponse } from "@notionhq/client/build/src/api-endpoints";
@@ -13,9 +13,9 @@ import Property from "./Property.astro";
 const response = await notion.databases.query({
   database_id: database_registration_id,
   filter: {
-    property: "Correo electrónico",
-    email: {
-      equals: email,
+    property: "Registration no.",
+    rich_text: {
+      equals: regno,
     },
   },
 });
