@@ -219,6 +219,7 @@ export function RegistrationForm() {
                                     <SelectItem value="UDEM">Universidad de Monterrey (UDEM)</SelectItem>
                                     <SelectItem value="ITESM">Tecnológico de Monterrey (ITESM)</SelectItem>
                                     <SelectItem value="UANL">Universidad Autónoma de N.L. (UANL)</SelectItem>
+                                    <SelectItem value="Universidad Metropolitana (UMM)">Universidad Metropolitana de Monterrey (UMM)</SelectItem>
                                     <SelectItem value="preparatoria">Estoy en preparatoria</SelectItem>
                                     <SelectItem value="Misionero FOCUS">Soy un misionero de FOCUS</SelectItem>
                                     <SelectItem value="OTRO">Otro...</SelectItem>
