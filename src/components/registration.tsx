@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import { formSchema } from "@/utils/formDataValidation";
 
@@ -101,7 +101,11 @@ export function RegistrationForm() {
                 <p>Hemos recibido tu registro para SEEK Local en Monterrey 2025. Dentro de 1 - 2 semanas te enviaremos un correo con los detalles del pago para que puedas completar tu registro.</p>
 
                 {
-                    regno && <ConferencePass regno={regno} />
+                    regno &&
+                    <Fragment>
+                        <ConferencePass regno={regno} />
+                        <p className="max-w-96 mx-auto text-xs">Siempre puedes volver a ver tu Pase de Conferencia ingresando a la liga: <a href={`https://seeklocalmonterrey.com/b/${regno}`} className="underline text-blue-400">{`https://seeklocalmonterrey.com/b/${regno}`}</a></p>
+                    </Fragment>
                 }
             </div>
         );

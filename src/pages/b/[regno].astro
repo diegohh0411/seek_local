@@ -2,14 +2,11 @@
 export const prerender = false;
 
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/components/Section.astro";
 import { ConferencePass } from "@/components/pass";
 
 const { regno } = Astro.params;
 ---
 
 <Layout>
-  <Section>
-    <ConferencePass client:load regno={regno ?? "NO_REGNO"} />
-  </Section>
+  <ConferencePass client:load regno={regno ?? "NO_REGNO"} />
 </Layout>
