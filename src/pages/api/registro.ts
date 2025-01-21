@@ -164,6 +164,17 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                             }
                         }
                     ]
+                },
+                "Registration no.": {
+                    type: 'rich_text',
+                    rich_text: [
+                        {
+                            type: "text",
+                            text: {
+                                content: crypto.randomUUID().split('-')[0], link: null
+                            }
+                        }
+                    ]
                 }
             }
         })
