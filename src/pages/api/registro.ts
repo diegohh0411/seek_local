@@ -73,7 +73,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                 Semestre: {
                     type: "select",
                     select: {
-                        name: (data.semestre ?? "").replace(',', '')
+                        name: (data.semestre ?? " ").replace(',', '')
                     }
                 },
                 Residencia: {
@@ -104,11 +104,22 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                             }
                         }
                     ]
+                },
+                "Registration no.": {
+                    type: 'rich_text',
+                    rich_text: [
+                        {
+                            type: "text",
+                            text: {
+                                content: crypto.randomUUID().split('-')[0], link: null
+                            }
+                        }
+                    ]
                 }
             }
         })
 
-        return new Response("", { status: 200 });
+        return new Response(JSON.stringify(response), { status: 200 });
     } catch (error) {
         const response = await notion.pages.create({
             parent: {
@@ -161,17 +172,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                             type: "text",
                             text: {
                                 content: JSON.stringify(await request.json()), link: null
-                            }
-                        }
-                    ]
-                },
-                "Registration no.": {
-                    type: 'rich_text',
-                    rich_text: [
-                        {
-                            type: "text",
-                            text: {
-                                content: crypto.randomUUID().split('-')[0], link: null
                             }
                         }
                     ]

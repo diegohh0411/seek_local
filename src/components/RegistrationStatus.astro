@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { regno } = Astro.props;
+console.log({ regno });
 
 import { notion, database_registration_id } from "@/utils/notion";
 import type { DatabaseObjectResponse } from "@notionhq/client/build/src/api-endpoints";

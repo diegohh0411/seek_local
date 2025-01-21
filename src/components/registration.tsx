@@ -7,13 +7,13 @@ import { formSchema } from "@/utils/formDataValidation";
 
 import { Button } from "@/components/ui/button"
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {
@@ -25,29 +25,29 @@ import {
 } from "@/components/ui/select"
 
 import { CheckCircle2, CircleX, Loader2 } from "lucide-react";
-  
+
 export function RegistrationForm() {
     const [submissionStatus, setSubmissionStatus] = useState<"success" | "error" | null>(null);
     const [isPosting, setIsPosting] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        nombre: undefined,
-        apellidos: undefined,
-        edad: undefined,
-        correo_electronico: undefined,
-        numero_telefonico: undefined,
-        grupo: undefined,
-        grupo_alternativo: undefined,
-        semestre: undefined,
-        residencia: undefined,
-        involucramiento: undefined,
-        involucramiento_alternativo: undefined,
-        referencia: undefined,
-      },
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            nombre: undefined,
+            apellidos: undefined,
+            edad: undefined,
+            correo_electronico: undefined,
+            numero_telefonico: undefined,
+            grupo: undefined,
+            grupo_alternativo: undefined,
+            semestre: undefined,
+            residencia: undefined,
+            involucramiento: undefined,
+            involucramiento_alternativo: undefined,
+            referencia: undefined,
+        },
     })
-   
+
     async function onSubmit(values: z.infer<typeof formSchema>) {
         setIsPosting(true);
 
@@ -57,9 +57,12 @@ export function RegistrationForm() {
                 body: JSON.stringify(values),
             })
 
+            console.log();
+
+            const regno = (await response.json()).properties["Registration no."]
+
             if (response.status === 200) {
-                setSubmissionStatus("success");
-                setIsPosting(false);
+                window.location.href = `/b/${regno}`
             } else if (response.status === 400) {
                 const error = await response.json();
 
@@ -86,20 +89,6 @@ export function RegistrationForm() {
         }
     }
 
-    if (submissionStatus === "success") {
-        
-        return (
-            <div className="w-full max-w-3xl mx-auto flex flex-col gap-6">
-                <CheckCircle2 className="size-10 text-green-600" />
-                <h1>¡Gracias!</h1>
-
-                <p>Hemos recibido tu registro para SEEK Local en Monterrey 2025. Dentro de 1 - 2 semanas te enviaremos un correo con los detalles del pago para que puedas completar tu registro.</p>
-
-                <p>Nos vemos pronto :)</p>
-            </div>
-        );
-    }
-
     if (submissionStatus === "error") {
         return (
             <div className="w-full max-w-3xl mx-auto flex flex-col gap-6">
@@ -124,34 +113,34 @@ export function RegistrationForm() {
 
                 <div className="grid md:grid-cols-[1fr_2fr] gap-6">
                     <FormField control={form.control}
-                    name="nombre"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Nombre</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Fulanito" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                Tu(s) nombre(s) propio(s)
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}/>
+                        name="nombre"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Nombre</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Fulanito" {...field} />
+                                </FormControl>
+                                <FormDescription>
+                                    Tu(s) nombre(s) propio(s)
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
 
                     <FormField control={form.control}
-                    name="apellidos"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Apellidos</FormLabel>
-                            <FormControl>
-                                <Input placeholder="de Tal" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                Ambos apellidos, por favor :)
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}/>
+                        name="apellidos"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Apellidos</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="de Tal" {...field} />
+                                </FormControl>
+                                <FormDescription>
+                                    Ambos apellidos, por favor :)
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
                 </div>
 
                 <FormField control={form.control}
@@ -165,7 +154,7 @@ export function RegistrationForm() {
                             <FormDescription></FormDescription>
                             <FormMessage />
                         </FormItem>
-                )}/>
+                    )} />
 
                 <FormField control={form.control}
                     name="correo_electronico"
@@ -178,8 +167,8 @@ export function RegistrationForm() {
                             <FormDescription>Lo utilizaremos para hacerte llegar información importante acerca de la conferencia</FormDescription>
                             <FormMessage />
                         </FormItem>
-                )}/>
-                
+                    )} />
+
                 <FormField control={form.control}
                     name="numero_telefonico"
                     render={({ field }) => (
@@ -191,7 +180,7 @@ export function RegistrationForm() {
                             <FormDescription>Si tu número no es mexicano, incluye tu código de país.</FormDescription>
                             <FormMessage />
                         </FormItem>
-                )}/>
+                    )} />
 
                 <FormField control={form.control}
                     name="grupo"
@@ -216,22 +205,22 @@ export function RegistrationForm() {
                             <FormDescription></FormDescription>
                             <FormMessage />
                         </FormItem>
-                )}/>
+                    )} />
 
                 {
                     form.watch("grupo") === "OTRO" &&
                     <FormField control={form.control}
-                    name="grupo_alternativo"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>¿A qué otra universidad o grupo perteneces?</FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormDescription>Esto nos sirve para organizarte una mejor conferencia, así que si no estás seguro de qué responder, cualquier información general sobre tu etapa de vida nos ayudará a conocerte mejor :)</FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}/>
+                        name="grupo_alternativo"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>¿A qué otra universidad o grupo perteneces?</FormLabel>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormDescription>Esto nos sirve para organizarte una mejor conferencia, así que si no estás seguro de qué responder, cualquier información general sobre tu etapa de vida nos ayudará a conocerte mejor :)</FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
                 }
 
                 <FormField control={form.control}
@@ -261,7 +250,7 @@ export function RegistrationForm() {
                             <FormDescription></FormDescription>
                             <FormMessage />
                         </FormItem>
-                )}/>
+                    )} />
 
                 <FormField control={form.control}
                     name="residencia"
@@ -283,53 +272,29 @@ export function RegistrationForm() {
                             <FormDescription></FormDescription>
                             <FormMessage />
                         </FormItem>
-                )}/>
+                    )} />
 
                 {
                     form.watch("residencia") === "No" &&
                     <FormField control={form.control}
-                    name="residencia_alternativa"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>¿De dónde eres?</FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormDescription></FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}/>
+                        name="residencia_alternativa"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>¿De dónde eres?</FormLabel>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormDescription></FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
                 }
 
                 <FormField control={form.control}
-                name="involucramiento"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>¿Cómo te has involucrado con FOCUS?</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Elige una opción" />
-                                </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                                <SelectItem value="Estudio de Biblia">Estudio de Biblia</SelectItem>
-                                <SelectItem value="Misionero">Misionero</SelectItem>
-                                <SelectItem value="No estoy involucrado">No estoy involucrado</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormDescription></FormDescription>
-                        <FormMessage />
-                    </FormItem>
-                )}/>
-
-                {
-                    form.watch("involucramiento") === "No estoy involucrado" &&
-                    <FormField control={form.control}
-                    name="involucramiento_alternativo"
+                    name="involucramiento"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>¿Te interesaría formar parte de un estudio bíblico?</FormLabel>
+                            <FormLabel>¿Cómo te has involucrado con FOCUS?</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -337,14 +302,38 @@ export function RegistrationForm() {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="Sí">Sí</SelectItem>
-                                    <SelectItem value="No">No</SelectItem>
+                                    <SelectItem value="Estudio de Biblia">Estudio de Biblia</SelectItem>
+                                    <SelectItem value="Misionero">Misionero</SelectItem>
+                                    <SelectItem value="No estoy involucrado">No estoy involucrado</SelectItem>
                                 </SelectContent>
                             </Select>
                             <FormDescription></FormDescription>
                             <FormMessage />
                         </FormItem>
-                    )}/>
+                    )} />
+
+                {
+                    form.watch("involucramiento") === "No estoy involucrado" &&
+                    <FormField control={form.control}
+                        name="involucramiento_alternativo"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>¿Te interesaría formar parte de un estudio bíblico?</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Elige una opción" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="Sí">Sí</SelectItem>
+                                        <SelectItem value="No">No</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <FormDescription></FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
                 }
 
                 <FormField control={form.control}
@@ -358,12 +347,12 @@ export function RegistrationForm() {
                             <FormDescription>Queremos saber cómo te enteraste de esta conferencia.</FormDescription>
                             <FormMessage />
                         </FormItem>
-                )}/>
+                    )} />
 
-                <Button type="submit" disabled={isPosting}>{ isPosting && <Loader2 className="animate-spin" /> } Enviar</Button>
+                <Button type="submit" disabled={isPosting}>{isPosting && <Loader2 className="animate-spin" />} Enviar</Button>
 
                 <p id="formErrors" className="text-red-500"></p>
             </form>
         </Form>
     )
-  }
+}
