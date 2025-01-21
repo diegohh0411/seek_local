@@ -25,10 +25,13 @@ import {
 } from "@/components/ui/select"
 
 import { CheckCircle2, CircleX, Loader2 } from "lucide-react";
+import { ConferencePass } from "./pass";
 
 export function RegistrationForm() {
     const [submissionStatus, setSubmissionStatus] = useState<"success" | "error" | null>(null);
     const [isPosting, setIsPosting] = useState(false);
+
+    const [regno, setRegno] = useState<string | null>(null);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -57,9 +60,8 @@ export function RegistrationForm() {
                 body: JSON.stringify(values),
             })
 
-            console.log();
-
             const regno = ((await response.json()).properties["Registration no."].rich_text[0].text.content) ?? ''
+            setRegno(regno);
 
             if (response.status === 200) {
                 setSubmissionStatus("success");
@@ -98,7 +100,9 @@ export function RegistrationForm() {
 
                 <p>Hemos recibido tu registro para SEEK Local en Monterrey 2025. Dentro de 1 - 2 semanas te enviaremos un correo con los detalles del pago para que puedas completar tu registro.</p>
 
-                <p>Nos vemos pronto :)</p>
+                {
+                    regno && <ConferencePass regno={regno} />
+                }
             </div>
         );
     }

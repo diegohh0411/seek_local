@@ -3,19 +3,13 @@ export const prerender = false;
 
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/Section.astro";
-import RegistrationStatus from "@/components/RegistrationStatus.astro";
+import { ConferencePass } from "@/components/pass";
 
 const { regno } = Astro.params;
 ---
 
 <Layout>
   <Section>
-    <RegistrationStatus server:defer regno={regno ?? ""}>
-      <div
-        class="w-full max-w-96 mx-auto rounded-xl aspect-[9/16] bg-stone-800 animate-pulse"
-        slot="fallback"
-      >
-      </div>
-    </RegistrationStatus>
+    <ConferencePass client:load regno={regno ?? "NO_REGNO"} />
   </Section>
 </Layout>
