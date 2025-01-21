@@ -1,0 +1,21 @@
+---
+export const prerender = false;
+
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import RegistrationStatus from "@/components/RegistrationStatus.astro";
+
+const { email } = Astro.params;
+---
+
+<Layout>
+  <Section>
+    <RegistrationStatus server:defer email={email ?? ""}>
+      <div
+        class="w-full max-w-96 mx-auto rounded-xl aspect-[9/16] bg-stone-800 animate-pulse"
+        slot="fallback"
+      >
+      </div>
+    </RegistrationStatus>
+  </Section>
+</Layout>
