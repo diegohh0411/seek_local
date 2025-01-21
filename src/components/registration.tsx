@@ -62,7 +62,8 @@ export function RegistrationForm() {
             const regno = ((await response.json()).properties["Registration no."].rich_text[0].text.content) ?? ''
 
             if (response.status === 200) {
-                window.location.href = `/success/${regno}`
+                setSubmissionStatus("success");
+                setIsPosting(false);
             } else if (response.status === 400) {
                 const error = await response.json();
 
@@ -87,6 +88,19 @@ export function RegistrationForm() {
             setSubmissionStatus("error");
             setIsPosting(false);
         }
+    }
+
+    if (submissionStatus === "success") {
+        return (
+            <div className="w-full max-w-3xl mx-auto flex flex-col gap-6">
+                <CheckCircle2 className="size-10 text-green-600" />
+                <h1>¡Gracias!</h1>
+
+                <p>Hemos recibido tu registro para SEEK Local en Monterrey 2025. Dentro de 1 - 2 semanas te enviaremos un correo con los detalles del pago para que puedas completar tu registro.</p>
+
+                <p>Nos vemos pronto :)</p>
+            </div>
+        );
     }
 
     if (submissionStatus === "error") {
