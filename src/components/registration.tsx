@@ -59,7 +59,7 @@ export function RegistrationForm() {
 
             console.log();
 
-            const regno = (await response.json()).properties["Registration no."]
+            const regno = ((await response.json()).properties["Registration no."].rich_text[0].text.content) ?? ''
 
             if (response.status === 200) {
                 window.location.href = `/b/${regno}`
