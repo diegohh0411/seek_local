@@ -104,7 +104,7 @@ export function RegistrationForm() {
                     regno &&
                     <Fragment>
                         <ConferencePass regno={regno} />
-                        <p className="max-w-96 mx-auto text-xs">Siempre puedes volver a ver tu Pase de Conferencia ingresando a la liga: <a href={`https://seeklocalmonterrey.com/b/${regno}`} className="underline text-blue-400">{`https://seeklocalmonterrey.com/b/${regno}`}</a></p>
+                        <p className="max-w-96 mx-auto text-xs">Siempre puedes volver a ver tu Pase de Conferencia ingresando a la liga: <a href={`https://seeklocalmty.com/b/${regno}`} className="underline text-blue-400">{`https://seeklocalmty.com/b/${regno}`}</a></p>
                     </Fragment>
                 }
             </div>
