@@ -165,18 +165,42 @@ export function RegistrationForm() {
                         )} />
                 </div>
 
-                <FormField control={form.control}
-                    name="edad"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Edad</FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormDescription></FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )} />
+                <div className="grid md:grid-cols-2 gap-6">
+                    <FormField control={form.control}
+                        name="edad"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Edad</FormLabel>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormDescription></FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+
+                    <FormField control={form.control}
+                        name="sexo"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Sexo</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Elige una opción" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="Hombre">Hombre</SelectItem>
+                                        <SelectItem value="Mujer">Mujer</SelectItem>
+                                        <SelectItem value="Prefiero no decir">Prefiero no decir</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <FormDescription></FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+                </div>
 
                 <FormField control={form.control}
                     name="correo_electronico"

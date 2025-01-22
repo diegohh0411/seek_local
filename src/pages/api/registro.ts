@@ -56,6 +56,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                     type: "number",
                     number: data.edad
                 },
+                Sexo: {
+                    type: "select",
+                    select: {
+                        name: data.sexo
+                    }
+                },
                 "Correo electrónico": {
                     type: "email",
                     email: data.correo_electronico

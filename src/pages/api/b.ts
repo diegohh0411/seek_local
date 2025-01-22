@@ -7,16 +7,12 @@ import type { DatabaseObjectResponse } from "@notionhq/client/build/src/api-endp
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.json();
 
-  console.log({ data })
-
   if (typeof data.regno !== "string" || !data.regno) {
     return new Response(JSON.stringify({ error: "Invalid registration number" }), {
       status: 400,
       headers: new Headers({ "content-type": "application/json" }),
     });
   }
-
-  console.log(data.regno);
 
   const response = await notion.databases.query({
     database_id: database_registration_id,
