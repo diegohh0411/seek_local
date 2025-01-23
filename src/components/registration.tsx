@@ -138,7 +138,7 @@ export function RegistrationForm() {
                         name="nombre"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Nombre</FormLabel>
+                                <FormLabel>Nombre*</FormLabel>
                                 <FormControl>
                                     <Input placeholder="Fulanito" {...field} />
                                 </FormControl>
@@ -153,7 +153,7 @@ export function RegistrationForm() {
                         name="apellidos"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Apellidos</FormLabel>
+                                <FormLabel>Apellidos*</FormLabel>
                                 <FormControl>
                                     <Input placeholder="de Tal" {...field} />
                                 </FormControl>
@@ -170,7 +170,7 @@ export function RegistrationForm() {
                         name="edad"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Edad</FormLabel>
+                                <FormLabel>Edad*</FormLabel>
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
@@ -183,7 +183,7 @@ export function RegistrationForm() {
                         name="sexo"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Sexo</FormLabel>
+                                <FormLabel>Sexo*</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
@@ -206,7 +206,7 @@ export function RegistrationForm() {
                     name="correo_electronico"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Correo electrónico</FormLabel>
+                            <FormLabel>Correo electrónico*</FormLabel>
                             <FormControl>
                                 <Input placeholder="fulanito.detal@gmail.com" {...field} />
                             </FormControl>
@@ -219,7 +219,7 @@ export function RegistrationForm() {
                     name="numero_telefonico"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Número telefónico</FormLabel>
+                            <FormLabel>Número telefónico*</FormLabel>
                             <FormControl>
                                 <Input placeholder="+52 81 0000 0000" {...field} />
                             </FormControl>
@@ -232,7 +232,7 @@ export function RegistrationForm() {
                     name="grupo"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>¿A qué universidad o grupo perteneces?</FormLabel>
+                            <FormLabel>¿A qué universidad o grupo perteneces?*</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -260,7 +260,7 @@ export function RegistrationForm() {
                         name="grupo_alternativo"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>¿A qué otra universidad o grupo perteneces?</FormLabel>
+                                <FormLabel>¿A qué otra universidad o grupo perteneces?*</FormLabel>
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
@@ -303,7 +303,7 @@ export function RegistrationForm() {
                     name="residencia"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>¿Vives en Monterrey?</FormLabel>
+                            <FormLabel>¿Vives en Monterrey?*</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -327,7 +327,7 @@ export function RegistrationForm() {
                         name="residencia_alternativa"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>¿De dónde eres?</FormLabel>
+                                <FormLabel>¿De dónde eres?*</FormLabel>
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
@@ -341,7 +341,7 @@ export function RegistrationForm() {
                     name="involucramiento"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>¿Cómo te has involucrado con FOCUS?</FormLabel>
+                            <FormLabel>¿Cómo te has involucrado con FOCUS?*</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -365,7 +365,7 @@ export function RegistrationForm() {
                         name="involucramiento_alternativo"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>¿Te interesaría formar parte de un estudio bíblico?</FormLabel>
+                                <FormLabel>¿Te interesaría formar parte de un estudio bíblico?*</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
