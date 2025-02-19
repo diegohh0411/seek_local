@@ -41,8 +41,9 @@ import Button from "../components/BeritComponents/Button.astro";
 				primary={true}
 				text="Regístrate"
 			/>
-		</div>
 
+			<Button href="/horario" class="parallax-item" text="Ver horario" />
+		</div>
 		<script>
 			import gsap from "../utils/gsap";
 
@@ -54,7 +55,7 @@ import Button from "../components/BeritComponents/Button.astro";
 					scrub: true,
 				},
 				y: (index) => {
-					const distances = ["-20svh", "-15svh", "-10svh", "-5svh"];
+					const distances = ["-25svh", "-20svh", "-15svh", "-10svh", "-5svh"];
 					return distances[index % distances.length];
 				},
 			});

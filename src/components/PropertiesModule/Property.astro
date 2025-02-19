@@ -1,0 +1,13 @@
+---
+interface Props {
+  icon: string;
+  key: string;
+}
+const { icon, key } = Astro.props;
+import Hero from "./../Icons/Hero.Outline.astro";
+---
+
+<p class="flex items-center gap-2">
+  <Hero name={icon} class="inline-block !size-4" />{key}
+</p>
+<div class="flex items-center gap-1 opacity-75"><slot /></div>

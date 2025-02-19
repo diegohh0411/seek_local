@@ -1,0 +1,43 @@
+---
+import Date from "./Date.astro";
+import Hero from "./Icons/Hero.Outline.astro";
+import Property from "./PropertiesModule/Property.astro";
+import PropertySection from "./PropertiesModule/PropertySection.astro";
+
+interface Props {
+  title: string;
+  date: null | {
+    start: string | null;
+    end?: string | null;
+    time_zone?: string;
+  };
+  location: string;
+  description: string;
+  hosts: string[];
+}
+const { title, date, location, description } = Astro.props;
+---
+
+<div class="flex flex-col gap-4 p-6 rounded-xl
+  border-1">
+  <h4 class="font-sans">{title}</h4>
+
+  <PropertySection>
+    <Property icon="map-pin" key="Lugar">
+      <p>{location}</p>
+    </Property>
+    <Property icon="calendar" key="Hora">
+      <Date date={date?.start} />
+
+      <Hero name="arrow-long-right" class="!size-4" />
+
+      <Date date={date?.end} />
+    </Property>
+  </PropertySection>
+  {
+    description && (
+      <hr class="opacity-75" />
+      <p class="text-sm opacity-75">{description}</p>
+    )
+  }
+</div>

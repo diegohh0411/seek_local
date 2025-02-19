@@ -23,9 +23,15 @@ const { showCursor = false } = Astro.props;
 
 		<meta property="og:url" content="https://seeklocalmty.com" />
 
-		<meta name="description" content="SEEK es una conferencia católica de tres días para universitarios. Habrán conferencistas dando diferentes temas que te ayudarán a profundizar tu fe y relación con Cristo! También tendrás la oportunidad a conocer a otras personas que tienen el mismo objetivo que tú: ¡crecer en la vida espiritual!"/>
-		<meta property="og:description" content="SEEK es una conferencia católica de tres días para universitarios. Habrán conferencistas dando diferentes temas que te ayudarán a profundizar tu fe y relación con Cristo! También tendrás la oportunidad a conocer a otras personas que tienen el mismo objetivo que tú: ¡crecer en la vida espiritual!"/>
-	
+		<meta
+			name="description"
+			content="SEEK es una conferencia católica de tres días para universitarios. Habrán conferencistas dando diferentes temas que te ayudarán a profundizar tu fe y relación con Cristo! También tendrás la oportunidad a conocer a otras personas que tienen el mismo objetivo que tú: ¡crecer en la vida espiritual!"
+		/>
+		<meta
+			property="og:description"
+			content="SEEK es una conferencia católica de tres días para universitarios. Habrán conferencistas dando diferentes temas que te ayudarán a profundizar tu fe y relación con Cristo! También tendrás la oportunidad a conocer a otras personas que tienen el mismo objetivo que tú: ¡crecer en la vida espiritual!"
+		/>
+
 		<meta property="og:image" content="https://seeklocalmty.com/cover.jpg" />
 	</head>
 	<body
@@ -35,9 +41,6 @@ const { showCursor = false } = Astro.props;
 		<slot />
 		<Footer />
 
-		{
-			!showCursor &&
-			<Cursor />
-		}
+		{!showCursor && <Cursor />}
 	</body>
 </html>
