@@ -98,7 +98,7 @@ export function RegistrationForm() {
                 <CheckCircle2 className="size-10 text-green-600" />
                 <h1>¡Gracias!</h1>
 
-                <p>Hemos recibido tu registro para SEEK Local en Monterrey 2025. Dentro de 1 - 2 semanas te enviaremos un correo con los detalles del pago para que puedas completar tu registro.</p>
+                <p>Hemos recibido tu registro para SEEK Local en Monterrey 2025. Dentro de los próximos 3 días te enviaremos un correo con los detalles del pago para que puedas completar tu registro.</p>
 
                 {
                     regno &&
@@ -232,7 +232,7 @@ export function RegistrationForm() {
                     name="grupo"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>¿A qué universidad o grupo perteneces?*</FormLabel>
+                            <FormLabel>¿A qué escuela o grupo perteneces?*</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -244,7 +244,8 @@ export function RegistrationForm() {
                                     <SelectItem value="ITESM">Tecnológico de Monterrey (ITESM)</SelectItem>
                                     <SelectItem value="UANL">Universidad Autónoma de N.L. (UANL)</SelectItem>
                                     <SelectItem value="Universidad Metropolitana (UMM)">Universidad Metropolitana de Monterrey (UMM)</SelectItem>
-                                    <SelectItem value="preparatoria">Estoy en preparatoria</SelectItem>
+                                    <SelectItem value="Prepa UDEM">Estoy en Prepa UDEM</SelectItem>
+                                    <SelectItem value="preparatoria">Estoy en preparatoria (no UDEM)</SelectItem>
                                     <SelectItem value="Misionero FOCUS">Soy un misionero de FOCUS</SelectItem>
                                     <SelectItem value="OTRO">Otro...</SelectItem>
                                 </SelectContent>
