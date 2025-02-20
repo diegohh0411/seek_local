@@ -1,0 +1,64 @@
+---
+import { featured_speakers } from "@/utils/notion";
+const speakers = await featured_speakers();
+---
+
+<div data-featured-speakers class="flex gap-12 overflow-auto">
+  {
+    speakers.map((speaker) => (
+      <div class="flex flex-col gap-2 h-full w-full max-w-96">
+        <img
+          src={
+            speaker.properties["Profile picture"]?.files?.[0]?.file?.url ?? ""
+          }
+          alt={speaker.properties.Name.title[0].plain_text}
+          class="w-full h-[50svh] object-cover rounded-t-full"
+        />
+
+        <h2>{speaker.properties.Name.title[0].plain_text}</h2>
+        <p>
+          {speaker.properties.Bio.rich_text
+            .map((text) => text.plain_text)
+            .join(" ")}
+        </p>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const container = document.querySelector("[data-featured-speakers]")!;
+  const speakers = Array.from(container.children);
+  const images = Array.from(container.querySelectorAll("img"));
+
+  import { gsap, ScrollTrigger } from "gsap/all";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const scroll_distance = 1000;
+
+  gsap.from(images, {
+    scrollTrigger: {
+      trigger: container,
+      start: "top bottom",
+      end: `+=${scroll_distance}`,
+      scrub: true,
+    },
+    y: "50svh",
+    stagger: 0.2,
+  });
+
+  gsap.set(container, {
+    marginBottom: `${scroll_distance}px`,
+  });
+
+  gsap.to(speakers, {
+    scrollTrigger: {
+      trigger: container,
+      start: "center center",
+      end: `+=${scroll_distance}`,
+      scrub: true,
+      pin: true,
+    },
+    x: () => `-${container.scrollWidth - window.innerWidth}px`,
+  });
+</script>

@@ -59,20 +59,12 @@ export const horario = async (): Promise<{
     return response;
 }
 
-export const speakers = async (): Promise<{ object: string; results: Page[] }> => {
+export const featured_speakers = async (): Promise<{ object: string; results: Page[] }> => {
     const response = await notion.databases.query({
         database_id: speakers_id
     }) as unknown as { object: string; results: Page[] };
 
-    response.results.sort((a, b) => {
-        if ((new Date(a.properties["Fecha"].date.start)) > (new Date(b.properties["Fecha"].date.start))) {
-            return 1;
-        } else if ((new Date(a.properties["Fecha"].date.start)) < (new Date(b.properties["Fecha"].date.start))) {
-            return -1;
-        } else {
-            return -2;
-        }
-    })
-
-    return response;
+    return response.results.filter((page) => {
+        return page.properties["Featured"].checkbox
+    });
 }
