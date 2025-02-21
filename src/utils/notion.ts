@@ -42,7 +42,7 @@ export const horario = async (): Promise<{
         database_id: horario_id
     }) as unknown as { object: string; results: Page[] };
 
-    response.results.sort((a, b) => {
+    response.results.sort((a: any, b: any) => {
         if ((new Date(a.properties["Fecha"]?.date?.start)) > (new Date(b.properties["Fecha"]?.date?.start))) {
             return 1;
         } else if ((new Date(a.properties["Fecha"]?.date?.start)) < (new Date(b.properties["Fecha"]?.date?.start))) {
@@ -52,19 +52,19 @@ export const horario = async (): Promise<{
         }
     })
 
-    response.results = response.results.filter((page) => {
+    response.results = response.results.filter((page: any) => {
         return page.properties["Public"].checkbox;
     })
 
     return response;
 }
 
-export const featured_speakers = async (): Promise<{ object: string; results: Page[] }> => {
+export const featured_speakers = async (): Promise<Page[]> => {
     const response = await notion.databases.query({
         database_id: speakers_id
     }) as unknown as { object: string; results: Page[] };
 
-    return response.results.filter((page) => {
+    return response.results.filter((page: any) => {
         return page.properties["Featured"].checkbox
     });
 }

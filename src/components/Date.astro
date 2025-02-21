@@ -1,8 +1,10 @@
 ---
 interface Props {
-  date: string | null;
+  date: string;
 }
 const { date } = Astro.props;
+
+// @ts-ignore
 const dateObj = new Date(date);
 ---
 

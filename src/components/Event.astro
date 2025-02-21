@@ -27,11 +27,11 @@ const { title, date, location, description } = Astro.props;
       <p>{location}</p>
     </Property>
     <Property icon="calendar" key="Hora">
-      <Date date={date?.start} />
+      <Date date={date?.start ?? ""} />
 
       <Hero name="arrow-long-right" class="!size-4" />
 
-      <Date date={date?.end} />
+      <Date date={date?.end ?? ""} />
     </Property>
   </PropertySection>
   {
