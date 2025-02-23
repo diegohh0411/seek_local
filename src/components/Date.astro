@@ -1,0 +1,21 @@
+---
+interface Props {
+  date: string;
+}
+const { date } = Astro.props;
+
+// @ts-ignore
+const dateObj = new Date(date);
+---
+
+{
+  dateObj && (
+    <span>
+      {dateObj.toLocaleTimeString("es-MX", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      })}
+    </span>
+  )
+}

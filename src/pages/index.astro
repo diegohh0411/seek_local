@@ -7,6 +7,7 @@ import Details from "@/components/sections/Details.astro";
 import Chip from "../components/Chip.astro";
 import Section from "../components/Section.astro";
 import Button from "../components/BeritComponents/Button.astro";
+import FeaturedSpeakers from "@/components/sections/FeaturedSpeakers.astro";
 ---
 
 <Layout>
@@ -41,8 +42,11 @@ import Button from "../components/BeritComponents/Button.astro";
 				primary={true}
 				text="Regístrate"
 			/>
-		</div>
 
+			<!--
+			<Button href="/horario" class="parallax-item" text="Ver horario" />
+			 -->
+		</div>
 		<script>
 			import gsap from "../utils/gsap";
 
@@ -54,12 +58,14 @@ import Button from "../components/BeritComponents/Button.astro";
 					scrub: true,
 				},
 				y: (index) => {
-					const distances = ["-20svh", "-15svh", "-10svh", "-5svh"];
+					const distances = ["-25svh", "-20svh", "-15svh", "-10svh", "-5svh"];
 					return distances[index % distances.length];
 				},
 			});
 		</script>
 	</div>
+
+	<FeaturedSpeakers />
 
 	<Why />
 

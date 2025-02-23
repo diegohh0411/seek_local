@@ -15,26 +15,44 @@ interface Props {
 
 import { Image } from "astro:assets";
 
-const { id = "", title, image, imageClasses, class: className = "" } = Astro.props;
+const {
+  id = "",
+  title,
+  image,
+  imageClasses,
+  class: className = "",
+} = Astro.props;
 ---
 
 <div
   id={id}
   data-section
   class:list={[
-    "flex flex-col gap-6 w-full max-w-3xl self-center p-6 rounded-3xl",
+    "flex flex-col gap-6 w-full max-w-4xl self-center p-6 rounded-3xl",
     className,
   ]}
 >
   {
     image && (
-      <Image src={image} alt="" class={`h-[50svh] object-cover z-10 ${imageClasses ?? ''}`} />
+      <Image
+        src={image}
+        alt=""
+        class={`h-[50svh] object-cover z-10 ${imageClasses ?? ""}`}
+      />
     )
   }
 
   <div class="overflow-hidden -m-6 p-6">
-    {title && title.size == "h1" && <h1 class={title.class ?? ''}>{title.text}</h1>}
-    {title && title.size == "h2" && <h2 class={title.class ?? ''}>{title.text}</h2>}
+    {
+      title && title.size == "h1" && (
+        <h1 class={title.class ?? ""}>{title.text}</h1>
+      )
+    }
+    {
+      title && title.size == "h2" && (
+        <h2 class={title.class ?? ""}>{title.text}</h2>
+      )
+    }
   </div>
 
   <div class:list={["flex flex-col gap-6"]}>

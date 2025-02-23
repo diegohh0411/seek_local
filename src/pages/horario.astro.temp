@@ -1,0 +1,49 @@
+---
+import Event from "@/components/Event.astro";
+import Layout from "@/layouts/Layout.astro";
+import { horario } from "@/utils/notion";
+
+const events = await horario();
+
+const grouped_by_day: any = {};
+events.results.forEach((event) => {
+  const date = new Date(
+    event.properties["Fecha"].date.start,
+  ).toLocaleDateString("es-ES", {
+    month: "long",
+    day: "numeric",
+  });
+
+  if (!grouped_by_day[date]) {
+    grouped_by_day[date] = [event];
+  } else {
+    grouped_by_day[date].push(event);
+  }
+});
+---
+
+<Layout>
+  {
+    Object.keys(grouped_by_day).map((date) => {
+      return (
+        <div class="flex flex-col gap-6 w-full max-w-3xl mx-auto">
+          <h1>{date}</h1>
+          {grouped_by_day[date].map((event: any) => (
+            <Event
+              title={event.properties.Name.title[0].plain_text}
+              date={{
+                start: event.properties["Fecha"].date.start,
+                end: event.properties["Fecha"].date.end,
+              }}
+              location={event.properties.Location.rich_text[0].plain_text}
+              description={
+                event.properties["Descripción pública"]?.rich_text?.[0]
+                  ?.plain_text
+              }
+            />
+          ))}
+        </div>
+      );
+    })
+  }
+</Layout>

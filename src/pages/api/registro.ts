@@ -127,7 +127,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
         return new Response(JSON.stringify(response), { status: 200 });
     } catch (error) {
-        const response = await notion.pages.create({
+        const _ = await notion.pages.create({
             parent: {
                 database_id: "18162de3ddab8042ba01dd0eddd7436e"
             },
