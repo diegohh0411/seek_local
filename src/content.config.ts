@@ -12,8 +12,7 @@ const speakers = defineCollection({
     last_name: z.string(),
     bio: z.string().optional(),
     pictureA: image(),
-    pictureB: image(),
-    pictureC: image(),
+    pictureB: image()
   })
 })
 

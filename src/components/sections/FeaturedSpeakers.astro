@@ -1,9 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import Speaker from "@/components/Speaker.astro";
+
 const speakers = await getCollection("speakers");
 ---
 
-<h1>Nuestros conferencistas</h1>
+<div class="max-w-4xl w-full mx-auto">
+  <h1 class="mb-6">Nuestros conferencistas</h1>
 
-{speakers.map((sp) => <Speaker speaker={sp} />)}
+  {speakers.map((sp) => <Speaker speaker={sp} />)}
+</div>

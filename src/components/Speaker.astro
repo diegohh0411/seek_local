@@ -12,9 +12,9 @@ const image_classes = `absolute h-full min-w-full object-cover`;
 
 <div
   data-speaker
-  class:list={[`h-screen md:h-[70svh]`, `grid md:grid-cols-2 gap-6 py-6`]}
+  class:list={[`h-screen md:h-[90svh]`, `grid md:grid-cols-2 gap-6 py-6`]}
 >
-  <div class="relative min-h-96 h-full">
+  <div class="relative min-h-96">
     <Image
       data-img-a
       src={speaker.data.pictureA}
@@ -27,20 +27,14 @@ const image_classes = `absolute h-full min-w-full object-cover`;
       alt=""
       class={image_classes}
     />
-    <Image
-      data-img-c
-      src={speaker.data.pictureC}
-      alt=""
-      class={image_classes}
-    />
   </div>
-  <div class="flex flex-col gap-6">
+  <div data-text-content class="flex flex-col gap-6">
     <h2>
       {
         `${speaker.data.title ?? ""} ${speaker.data.first_name} ${speaker.data.last_name}`.trim()
       }
     </h2>
-    <p>{speaker.data.bio}</p>
+    <p class="text-xl">{speaker.data.bio}</p>
   </div>
 </div>
 
@@ -50,25 +44,22 @@ const image_classes = `absolute h-full min-w-full object-cover`;
 
   const speakers = document.querySelectorAll("[data-speaker]");
 
-  const scroll_distance = 2000;
+  const scroll_distance = 1000;
 
   speakers.forEach((speaker) => {
     const imgA = speaker.querySelector("[data-img-a]");
     const imgB = speaker.querySelector("[data-img-b]");
-    const imgC = speaker.querySelector("[data-img-c]");
 
-    gsap.set(speaker, {
-      marginBottom: scroll_distance,
-    });
+    const st = {
+      trigger: speaker,
+      start: "top top",
+      end: `+=${scroll_distance}`,
+      scrub: true,
+      pin: true,
+    };
 
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: speaker,
-        start: "top top",
-        end: `+=${scroll_distance}`,
-        scrub: true,
-        pin: true,
-      },
+      scrollTrigger: st,
     });
 
     tl.to(imgA, {
@@ -81,20 +72,6 @@ const image_classes = `absolute h-full min-w-full object-cover`;
       delay: -0.6,
       scale: 0.5,
       y: "100svh",
-      borderRadius: 999,
-    });
-
-    tl.to(imgB, {
-      scale: 0.5,
-      y: "-100svh",
-      opacity: 0,
-      borderRadius: 999,
-    });
-
-    tl.from(imgC, {
-      delay: -0.6,
-      scale: 0.5,
-      x: "-100svh",
       borderRadius: 999,
     });
   });
