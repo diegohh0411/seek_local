@@ -15,18 +15,16 @@ const image_classes = `absolute h-full min-w-full object-cover`;
   class:list={[`h-screen md:h-[90svh]`, `grid md:grid-cols-2 gap-6 py-6`]}
 >
   <div class="relative min-h-96">
-    <Image
-      data-img-a
-      src={speaker.data.pictureA}
-      alt=""
-      class={image_classes}
-    />
-    <Image
-      data-img-b
-      src={speaker.data.pictureB}
-      alt=""
-      class={image_classes}
-    />
+    {
+      speaker.data.pictures.map((picture, index) => (
+        <Image
+          data-picture-no={index}
+          src={picture}
+          alt=""
+          class={image_classes}
+        />
+      ))
+    }
   </div>
   <div data-text-content class="flex flex-col gap-6">
     <h2>
@@ -44,11 +42,10 @@ const image_classes = `absolute h-full min-w-full object-cover`;
 
   const speakers = document.querySelectorAll("[data-speaker]");
 
-  const scroll_distance = 1000;
+  const scroll_distance = 500;
 
   speakers.forEach((speaker) => {
-    const imgA = speaker.querySelector("[data-img-a]");
-    const imgB = speaker.querySelector("[data-img-b]");
+    const pictures = speaker.querySelectorAll("[data-picture-no]");
 
     const st = {
       trigger: speaker,
@@ -62,17 +59,24 @@ const image_classes = `absolute h-full min-w-full object-cover`;
       scrollTrigger: st,
     });
 
-    tl.to(imgA, {
-      scale: 0.5,
-      x: "-100svw",
-      borderRadius: 999,
-    });
+    if (pictures.length == 1) {
+      tl.from(pictures[0], {
+        scale: 0.5,
+        borderRadius: 999,
+      });
+    } else if (pictures.length == 2) {
+      tl.to(pictures[0], {
+        scale: 0.5,
+        x: "-100svw",
+        borderRadius: 999,
+      });
 
-    tl.from(imgB, {
-      delay: -0.6,
-      scale: 0.5,
-      y: "100svh",
-      borderRadius: 999,
-    });
+      tl.from(pictures[1], {
+        delay: -0.6,
+        scale: 0.5,
+        y: "100svh",
+        borderRadius: 999,
+      });
+    }
   });
 </script>
