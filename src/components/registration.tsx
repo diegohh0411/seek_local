@@ -129,7 +129,7 @@ export function RegistrationForm() {
             <form onSubmit={form.handleSubmit(onSubmit, (errors) => console.debug([errors, form.getValues()]))} className="flex flex-col gap-6 max-w-3xl w-full mx-auto">
                 <h1>Registro para SEEK Local 2025 en Monterrey</h1>
                 <p>SEEK Local es una conferencia católica de tres días para universitarios. Habrán conferencistas dando diferentes temas que te ayudarán a profundizar tu fe y relación con Cristo! También tendrás la oportunidad a conocer a otras personas que tienen el mismo objetivo que tú: crecer en la vida espiritual!</p>
-                <p>📅 7 - 9 de marzo del 2025<br />📍 Edificio Estoa, Universidad de Monterrey (UDEM)<br />🎫 Al momento, el costo del ticket es de 700 MXN. Conforme se acerque la fecha, se elevará.</p>
+                <p>📅 7 - 9 de marzo del 2025<br />📍 Edificio Estoa, Universidad de Monterrey (UDEM)<br />🎫 Al momento, el costo del ticket es de 650 MXN. Conforme se acerque la fecha, se elevará.</p>
 
                 <hr className="border-stone-500 mt-6" />
 
