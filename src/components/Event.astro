@@ -13,9 +13,9 @@ interface Props {
   };
   location: string;
   description: string;
-  hosts: string[];
+  speakers?: string[];
 }
-const { title, date, location, description } = Astro.props;
+const { title, date, location, description, speakers } = Astro.props;
 ---
 
 <div class="flex flex-col gap-4 p-6 rounded-xl
@@ -23,6 +23,14 @@ const { title, date, location, description } = Astro.props;
   <h4 class="font-sans">{title}</h4>
 
   <PropertySection>
+    {
+      speakers && speakers.length > 0 && (
+      <Property icon="users" key="Ponente">
+        <p>{speakers?.join(", ")}</p>
+      </Property>
+      )
+    }
+
     <Property icon="map-pin" key="Lugar">
       <p>{location}</p>
     </Property>
