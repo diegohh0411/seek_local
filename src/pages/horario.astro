@@ -15,8 +15,14 @@ events.results.forEach((event) => {
   });
 
   if (!grouped_by_day[date]) {
+    console.log(
+      `Event ${(event.properties as any).Name.title[0].plain_text} is the first event on ${(event.properties as any)["Fecha"].date.start}`,
+    );
     grouped_by_day[date] = [event];
   } else {
+    console.log(
+      `Event ${(event.properties as any).Name.title[0].plain_text} is going to be grouped according to ${(event.properties as any)["Fecha"].date.start}`,
+    );
     grouped_by_day[date].push(event);
   }
 });
