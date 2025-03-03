@@ -6,19 +6,6 @@ interface Props {
   events: any;
 }
 const { title, events } = Astro.props;
-
-const earliest_hour = events
-  .reduce((acc: any, event: any) => {
-    const start = new Date(event.properties["Fecha"].date.start);
-    return start < acc ? start : acc;
-  }, new Date())
-  .getHours();
-const latest_hour = events
-  .reduce((acc: any, event: any) => {
-    const end = new Date(event.properties["Fecha"].date.end);
-    return end > acc ? end : acc;
-  }, new Date())
-  .getHours();
 ---
 
 <div class="flex flex-col gap-6 w-full max-w-3xl mx-auto">
