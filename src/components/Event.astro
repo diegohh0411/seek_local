@@ -11,7 +11,7 @@ interface Props {
     end?: string | null;
     time_zone?: string;
   };
-  location: string;
+  location?: string;
   description: string;
   speakers?: string[];
 }
@@ -31,9 +31,13 @@ const { title, date, location, description, speakers } = Astro.props;
       )
     }
 
-    <Property icon="map-pin" key="Lugar">
-      <p>{location}</p>
-    </Property>
+    {
+      location && (
+      <Property icon="map-pin" key="Lugar">
+        <p>{location}</p>
+      </Property>
+      )
+    }
     <Property icon="calendar" key="Hora">
       <Date date={date?.start ?? ""} />
 

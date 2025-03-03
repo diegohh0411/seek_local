@@ -35,7 +35,7 @@ events.results.forEach((event) => {
                 start: event.properties["Fecha"].date.start,
                 end: event.properties["Fecha"].date.end,
               }}
-              location={event.properties.Location.rich_text[0].plain_text}
+              location={event.properties.Location.rich_text?.[0]?.plain_text}
               description={
                 event.properties["Descripción pública"]?.rich_text?.[0]
                   ?.plain_text
