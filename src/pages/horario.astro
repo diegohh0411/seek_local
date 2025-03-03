@@ -8,7 +8,7 @@ const events = await horario();
 const grouped_by_day: any = {};
 events.results.forEach((event) => {
   const date = new Date(
-    event.properties["Fecha"].date.start,
+    (event.properties as any)["Fecha"].date.start,
   ).toLocaleDateString("es-ES", {
     month: "long",
     day: "numeric",
@@ -35,11 +35,14 @@ events.results.forEach((event) => {
                 start: event.properties["Fecha"].date.start,
                 end: event.properties["Fecha"].date.end,
               }}
-              location={event.properties.Location.rich_text[0].plain_text}
+              location={event.properties.Location.rich_text?.[0]?.plain_text}
               description={
                 event.properties["Descripción pública"]?.rich_text?.[0]
                   ?.plain_text
               }
+              speakers={event.properties.Speakers?.multi_select?.map(
+                (speaker: any) => speaker.name,
+              )}
             />
           ))}
         </div>
