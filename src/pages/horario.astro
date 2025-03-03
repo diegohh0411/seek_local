@@ -7,18 +7,18 @@ const events = await horario();
 
 const grouped_by_day: any = {};
 events.results.forEach((event) => {
-  const date = new Date(
+  const day = new Date(
     (event.properties as any)["Fecha"].date.start,
-  ).toLocaleString("es-ES", {
+  ).toLocaleString("es-MX", {
     month: "long",
     day: "numeric",
-    timeZone: "America/Mexico_City", // GMT-6 timezone
+    timeZone: "America/Mexico_City",
   });
 
-  if (!grouped_by_day[date]) {
-    grouped_by_day[date] = [event];
+  if (!grouped_by_day[day]) {
+    grouped_by_day[day] = [event];
   } else {
-    grouped_by_day[date].push(event);
+    grouped_by_day[day].push(event);
   }
 });
 ---
