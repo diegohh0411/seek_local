@@ -8,24 +8,22 @@ interface Props {
 const { title, events } = Astro.props;
 ---
 
-<div class="flex flex-col gap-6 w-full max-w-3xl mx-auto">
-  <h1>{title}</h1>
-  {
-    events.map((event: any) => (
-      <Event
-        title={event.properties.Name.title[0].plain_text}
-        date={{
-          start: event.properties["Fecha"].date.start,
-          end: event.properties["Fecha"].date.end,
-        }}
-        location={event.properties.Location.rich_text?.[0]?.plain_text}
-        description={
-          event.properties["Descripción pública"]?.rich_text?.[0]?.plain_text
-        }
-        speakers={event.properties.Speakers?.multi_select?.map(
-          (speaker: any) => speaker.name,
-        )}
-      />
-    ))
-  }
-</div>
+<h1>{title}</h1>
+{
+  events.map((event: any) => (
+    <Event
+      title={event.properties.Name.title[0].plain_text}
+      date={{
+        start: event.properties["Fecha"].date.start,
+        end: event.properties["Fecha"].date.end,
+      }}
+      location={event.properties.Location.rich_text?.[0]?.plain_text}
+      description={
+        event.properties["Descripción pública"]?.rich_text?.[0]?.plain_text
+      }
+      speakers={event.properties.Speakers?.multi_select?.map(
+        (speaker: any) => speaker.name,
+      )}
+    />
+  ))
+}

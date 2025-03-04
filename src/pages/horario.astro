@@ -1,6 +1,8 @@
 ---
 import Schedule from "@/components/Schedule.astro";
 import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import Button from "@/components/BeritComponents/Button.astro";
 import { horario } from "@/utils/notion";
 
 const events = await horario();
@@ -24,9 +26,21 @@ events.results.forEach((event) => {
 ---
 
 <Layout>
-  {
-    Object.keys(grouped_by_day).map((date) => {
-      return <Schedule title={date} events={grouped_by_day[date]} />;
-    })
-  }
+  <Section>
+    <Section class="border-1 p-6 !w-fit mr-auto">
+      <p>¿Necesitas un mapa para ubicar algún evento o acceso?</p>
+      <Button
+        href="/SEEKLocal_Mapas.pdf"
+        class=""
+        primary={false}
+        text="Ver mapas"
+      />
+    </Section>
+
+    {
+      Object.keys(grouped_by_day).map((date) => {
+        return <Schedule title={date} events={grouped_by_day[date]} />;
+      })
+    }
+  </Section>
 </Layout>
