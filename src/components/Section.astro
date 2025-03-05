@@ -69,27 +69,6 @@ const {
 
   sections.forEach((section) => {
     const title = section.querySelector("h1, h2");
-    const image = section.querySelector("img");
-
-    gsap.fromTo(
-      image,
-      {
-        scale: 1.5,
-        yPercent: 10,
-        borderRadius: "0",
-      },
-      {
-        scale: 1,
-        yPercent: 0,
-        borderRadius: "1.5rem",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 90%",
-          end: "top 40%",
-          scrub: true,
-        },
-      },
-    );
 
     gsap.from(title, {
       translateY: -200,
