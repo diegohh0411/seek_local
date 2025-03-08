@@ -21,6 +21,12 @@ events.results.forEach((event) => {
     grouped_by_day[day] = [event];
   } else {
     grouped_by_day[day].push(event);
+    grouped_by_day[day].sort((a: any, b: any) => {
+      const a_start = new Date((a.properties as any)["Fecha"].date.start);
+      const b_start = new Date((b.properties as any)["Fecha"].date.start);
+
+      return a_start.getTime() - b_start.getTime();
+    });
   }
 });
 ---
