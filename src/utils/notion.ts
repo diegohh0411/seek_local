@@ -1,12 +1,13 @@
 import { Client } from "@notionhq/client";
+import "dotenv/config";
 
 export const notion = new Client({
-    auth: "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"
+    auth: process.env.NOTION_API_KEY
 })
 
-export const database_registration_id = "18162de3ddab8004b6d8d3e7fe6416ad";
-export const horario_id = "17b62de3ddab8157a92bc1130e8cfc5e";
-export const speakers_id = "19d62de3ddab80ceaccfe00d776bddc9";
+export const database_registration_id = process.env.DATABASE_REGISTRATION_ID || "";
+export const horario_id = process.env.HORARIO_ID || "";
+export const speakers_id = process.env.SPEAKERS_ID || "";
 
 interface Page {
     object: string;
